@@ -1,0 +1,259 @@
+{
+  "commit": "36ee9d7cc8262ee2c90aedd4771ed0389122d227",
+  "predicate": "Guardian#can_edit_post?",
+  "file": "lib/guardian/post_guardian.rb",
+  "source_sha256": "35752fd7383ee373b6f1b023ad9d441fa562d6fda9a26ba31b602fe505690da1",
+  "line_range": [
+    153,
+    203
+  ],
+  "evidence_scope": "static real-source dependency extraction plus faithful owner-edit stale-snapshot slice; not a Rails boot test",
+  "live_reads_observed": [
+    {
+      "line": 154,
+      "category": "discourse_global",
+      "code": "return false if Discourse.static_doc_topic_ids.include?(post.topic_id) && !is_admin?"
+    },
+    {
+      "line": 154,
+      "category": "post_state",
+      "code": "return false if Discourse.static_doc_topic_ids.include?(post.topic_id) && !is_admin?"
+    },
+    {
+      "line": 154,
+      "category": "topic_or_category_state",
+      "code": "return false if Discourse.static_doc_topic_ids.include?(post.topic_id) && !is_admin?"
+    },
+    {
+      "line": 159,
+      "category": "post_state",
+      "code": "return false if post.locked? && !is_staff?"
+    },
+    {
+      "line": 163,
+      "category": "post_state",
+      "code": "return can_create_post?(post.topic) if is_staff?"
+    },
+    {
+      "line": 163,
+      "category": "topic_or_category_state",
+      "code": "return can_create_post?(post.topic) if is_staff?"
+    },
+    {
+      "line": 163,
+      "category": "recursive_guardian_predicate",
+      "code": "return can_create_post?(post.topic) if is_staff?"
+    },
+    {
+      "line": 164,
+      "category": "post_state",
+      "code": "return can_create_post?(post.topic) if can_see_post_topic?(post)"
+    },
+    {
+      "line": 164,
+      "category": "topic_or_category_state",
+      "code": "return can_create_post?(post.topic) if can_see_post_topic?(post)"
+    },
+    {
+      "line": 164,
+      "category": "recursive_guardian_predicate",
+      "code": "return can_create_post?(post.topic) if can_see_post_topic?(post)"
+    },
+    {
+      "line": 167,
+      "category": "recursive_guardian_predicate",
+      "code": "return false if !can_see_post_topic?(post)"
+    },
+    {
+      "line": 168,
+      "category": "post_state",
+      "code": "return can_create_post?(post.topic) if is_category_group_moderator?(post.topic&.category)"
+    },
+    {
+      "line": 168,
+      "category": "topic_or_category_state",
+      "code": "return can_create_post?(post.topic) if is_category_group_moderator?(post.topic&.category)"
+    },
+    {
+      "line": 168,
+      "category": "recursive_guardian_predicate",
+      "code": "return can_create_post?(post.topic) if is_category_group_moderator?(post.topic&.category)"
+    },
+    {
+      "line": 170,
+      "category": "post_state",
+      "code": "return false if post.topic&.archived? || post.user_deleted || post.deleted_at"
+    },
+    {
+      "line": 170,
+      "category": "topic_or_category_state",
+      "code": "return false if post.topic&.archived? || post.user_deleted || post.deleted_at"
+    },
+    {
+      "line": 173,
+      "category": "post_state",
+      "code": "if can_see_post?(post) && can_create_post?(post.topic) &&"
+    },
+    {
+      "line": 173,
+      "category": "topic_or_category_state",
+      "code": "if can_see_post?(post) && can_create_post?(post.topic) &&"
+    },
+    {
+      "line": 173,
+      "category": "recursive_guardian_predicate",
+      "code": "if can_see_post?(post) && can_create_post?(post.topic) &&"
+    },
+    {
+      "line": 174,
+      "category": "site_setting",
+      "code": "post.topic.category_id == SiteSetting.shared_drafts_category.to_i &&"
+    },
+    {
+      "line": 174,
+      "category": "post_state",
+      "code": "post.topic.category_id == SiteSetting.shared_drafts_category.to_i &&"
+    },
+    {
+      "line": 174,
+      "category": "topic_or_category_state",
+      "code": "post.topic.category_id == SiteSetting.shared_drafts_category.to_i &&"
+    },
+    {
+      "line": 175,
+      "category": "post_state",
+      "code": "can_see_category?(post.topic.category) && can_see_shared_draft?"
+    },
+    {
+      "line": 175,
+      "category": "topic_or_category_state",
+      "code": "can_see_category?(post.topic.category) && can_see_shared_draft?"
+    },
+    {
+      "line": 175,
+      "category": "recursive_guardian_predicate",
+      "code": "can_see_category?(post.topic.category) && can_see_shared_draft?"
+    },
+    {
+      "line": 179,
+      "category": "site_setting",
+      "code": "if post.wiki && @user.in_any_groups?(SiteSetting.edit_wiki_post_allowed_groups_map)"
+    },
+    {
+      "line": 179,
+      "category": "post_state",
+      "code": "if post.wiki && @user.in_any_groups?(SiteSetting.edit_wiki_post_allowed_groups_map)"
+    },
+    {
+      "line": 179,
+      "category": "user_state",
+      "code": "if post.wiki && @user.in_any_groups?(SiteSetting.edit_wiki_post_allowed_groups_map)"
+    },
+    {
+      "line": 180,
+      "category": "post_state",
+      "code": "return can_create_post?(post.topic)"
+    },
+    {
+      "line": 180,
+      "category": "topic_or_category_state",
+      "code": "return can_create_post?(post.topic)"
+    },
+    {
+      "line": 180,
+      "category": "recursive_guardian_predicate",
+      "code": "return can_create_post?(post.topic)"
+    },
+    {
+      "line": 185,
+      "category": "recursive_guardian_predicate",
+      "code": "if is_my_own?(post)"
+    },
+    {
+      "line": 186,
+      "category": "user_state",
+      "code": "return false if @user.silenced?"
+    },
+    {
+      "line": 188,
+      "category": "post_state",
+      "code": "return can_edit_hidden_post?(post) if post.hidden?"
+    },
+    {
+      "line": 188,
+      "category": "recursive_guardian_predicate",
+      "code": "return can_edit_hidden_post?(post) if post.hidden?"
+    },
+    {
+      "line": 190,
+      "category": "post_state",
+      "code": "if post.is_first_post? && post.topic.category_allows_unlimited_owner_edits_on_first_post?"
+    },
+    {
+      "line": 190,
+      "category": "topic_or_category_state",
+      "code": "if post.is_first_post? && post.topic.category_allows_unlimited_owner_edits_on_first_post?"
+    },
+    {
+      "line": 194,
+      "category": "post_state",
+      "code": "return !post.edit_time_limit_expired?(@user)"
+    },
+    {
+      "line": 194,
+      "category": "user_state",
+      "code": "return !post.edit_time_limit_expired?(@user)"
+    },
+    {
+      "line": 194,
+      "category": "clock_dependent",
+      "code": "return !post.edit_time_limit_expired?(@user)"
+    },
+    {
+      "line": 197,
+      "category": "post_state",
+      "code": "if post.is_category_description?"
+    },
+    {
+      "line": 198,
+      "category": "post_state",
+      "code": "return true if can_edit_category_description?(post.topic.category)"
+    },
+    {
+      "line": 198,
+      "category": "topic_or_category_state",
+      "code": "return true if can_edit_category_description?(post.topic.category)"
+    },
+    {
+      "line": 198,
+      "category": "recursive_guardian_predicate",
+      "code": "return true if can_edit_category_description?(post.topic.category)"
+    }
+  ],
+  "stale_snapshot_slice": {
+    "initial_snapshot_answer": true,
+    "mutations": [
+      {
+        "mutation": "post.locked = true",
+        "live": false,
+        "snapshot": true,
+        "stale": true
+      },
+      {
+        "mutation": "clock advances past edit_time_limit",
+        "live": false,
+        "snapshot": true,
+        "stale": true
+      },
+      {
+        "mutation": "post.deleted_at set",
+        "live": false,
+        "snapshot": true,
+        "stale": true
+      }
+    ],
+    "stale_count": 3
+  },
+  "conclusion": "Guardian is structural non-fit for Frozen Read-Model Capsules.",
+  "reason": "Correctness depends on live post/topic/category/user state, SiteSetting/global reads, recursive Guardian predicates, and wall-clock edit limits. Keeping a frozen capsule correct would require owner round-trips per decision."
+}

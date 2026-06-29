@@ -1,0 +1,197 @@
+{
+  "commit": "36ee9d7cc8262ee2c90aedd4771ed0389122d227",
+  "file": "app/models/report.rb",
+  "source_sha256": "5a1c29551abd7ae31b121953d70e8416496c8aaf378014877a8fcbcd629fbe7c",
+  "classification": "partial",
+  "verdict": "Report is PARTIAL, not fit, for Frozen Read-Model Capsules",
+  "evidence": {
+    "cache_or_redis_globals": [
+      {
+        "line": 252,
+        "code": "Discourse.cache.keys(pattern).each { |key| Discourse.cache.redis.del(key) }"
+      },
+      {
+        "line": 365,
+        "code": "Discourse.cache.read(cache_key(report))"
+      },
+      {
+        "line": 370,
+        "code": "Discourse.cache.write(cache_key(report), report.as_json, expires_in: duration)"
+      }
+    ],
+    "db_or_ar_live_queries": [
+      {
+        "line": 256,
+        "code": "ActiveRecord::Base.connection.transaction do"
+      },
+      {
+        "line": 259,
+        "code": "DB.exec \"SET TRANSACTION READ ONLY\" if !Rails.env.test?"
+      },
+      {
+        "line": 261,
+        "code": "DB.exec \"SET LOCAL statement_timeout = #{timeout}\""
+      },
+      {
+        "line": 431,
+        "code": "ApplicationRequest.where(req_type: ApplicationRequest.req_types[filter])"
+      },
+      {
+        "line": 438,
+        "code": ".where(\"date >= ? AND date <= ?\", report.start_date, report.end_date)"
+      },
+      {
+        "line": 439,
+        "code": ".order(date: :asc)"
+      },
+      {
+        "line": 440,
+        "code": ".group(:date)"
+      },
+      {
+        "line": 441,
+        "code": ".sum(:count)"
+      },
+      {
+        "line": 444,
+        "code": "report.total = data.sum(:count)"
+      },
+      {
+        "line": 447,
+        "code": "data.where(\"date >= ? AND date < ?\", report.start_date - 31.days, report.start_date).sum("
+      },
+      {
+        "line": 455,
+        "code": "ApplicationRequest.where("
+      },
+      {
+        "line": 469,
+        "code": "ApplicationRequest.where("
+      },
+      {
+        "line": 519,
+        "code": "subject_class.where("
+      },
+      {
+        "line": 531,
+        "code": "subject_class.where("
+      },
+      {
+        "line": 553,
+        "code": "countable = PostAction.unscoped.where(post_action_type_id: post_action_type)"
+      },
+      {
+        "line": 557,
+        "code": "countable.joins(post: :topic).where("
+      },
+      {
+        "line": 562,
+        "code": "countable = countable.joins(post: :topic).where(\"topics.category_id = ?\", category_id)"
+      },
+      {
+        "line": 571,
+        "code": "subject = Topic.where(\"topics.user_id > 0\")"
+      },
+      {
+        "line": 578,
+        "code": "subject = Topic.private_messages.where(\"topics.user_id > 0\").with_subtype(topic_subtype)"
+      }
+    ],
+    "i18n_reads": [
+      {
+        "line": 185,
+        "code": "{ type: :date, property: :x, title: I18n.t(\"reports.default.labels.day\") },"
+      },
+      {
+        "line": 186,
+        "code": "{ type: :number, property: :y, title: I18n.t(\"reports.default.labels.count\") },"
+      },
+      {
+        "line": 275,
+        "code": "description = I18n.t(\"reports.#{type}.description\", default: \"\")"
+      },
+      {
+        "line": 276,
+        "code": "description_link = I18n.t(\"reports.#{type}.description_link\", default: \"\")"
+      },
+      {
+        "line": 280,
+        "code": "title: I18n.t(\"reports.#{type}.title\", default: nil),"
+      },
+      {
+        "line": 281,
+        "code": "xaxis: I18n.t(\"reports.#{type}.xaxis\", default: nil),"
+      },
+      {
+        "line": 282,
+        "code": "yaxis: I18n.t(\"reports.#{type}.yaxis\", default: nil),"
+      }
+    ],
+    "logger_reads": [
+      {
+        "line": 400,
+        "code": "Rails.logger.error(\"Couldn’t create report `#{type}`: <#{e.class} #{e.message}>\")"
+      },
+      {
+        "line": 409,
+        "code": "Rails.logger.error("
+      }
+    ],
+    "site_setting_reads": [
+      {
+        "line": 54,
+        "code": "if BROWSER_PAGEVIEW_REPORTS.include?(type) && !SiteSetting.persist_browser_pageview_events"
+      },
+      {
+        "line": 59,
+        "code": "SiteSetting.use_legacy_pageviews ? HIDDEN_PAGEVIEW_REPORTS : HIDDEN_LEGACY_PAGEVIEW_REPORTS"
+      },
+      {
+        "line": 358,
+        "code": "report.legacy = LEGACY_REPORTS.include?(type) if SiteSetting.reporting_improvements"
+      },
+      {
+        "line": 424,
+        "code": "SiteSetting.use_legacy_pageviews ? legacy_page_view_requests : page_view_requests"
+      }
+    ],
+    "dynamic_report_registration": [
+      {
+        "line": 323,
+        "code": "def Report.add_report(name, exclude_from_dashboard: false, &block)"
+      },
+      {
+        "line": 324,
+        "code": "singleton_class.instance_eval { define_method(\"report_#{name}\", &block) }"
+      },
+      {
+        "line": 383,
+        "code": "public_send(report_method, report)"
+      },
+      {
+        "line": 479,
+        "code": "counts = subject_class.public_send(report_method, data_start, report.end_date)"
+      },
+      {
+        "line": 497,
+        "code": ".public_send(report_method, *args)"
+      },
+      {
+        "line": 508,
+        "code": "prev_data = subject_class.public_send(report_method, *args)"
+      }
+    ]
+  },
+  "path_metrics": {
+    "find_cached_sync_cache_reads": 1,
+    "find_live_dispatch_points": 2,
+    "req_report_query_ops": 8
+  },
+  "sync_gateway_frequency": "one synchronous cache read per Report.find_cached call; Report.find then executes live SQL/report method on miss",
+  "batchable_vs_chatty": "Only if owner resolves the full report result/cache entry before the capsule. Per-item cache/SQL inside a Ractor would be chatty and economically invalid.",
+  "capsule_rules": {
+    "cache_global_inside_ractor": "must reject",
+    "report_snapshot_shareable": "only after owner materializes data into plain frozen DTOs",
+    "sql_inside_ractor": "must reject"
+  }
+}

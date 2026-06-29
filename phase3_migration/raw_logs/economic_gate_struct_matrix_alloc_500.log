@@ -1,0 +1,26 @@
+Ruby 4.0.5 (aarch64-linux) refork death-test (frontier / iso-throughput)
+POOLS=[1, 2] SHAPES=[:struct] N_by_shape={struct: 1500000} ITEMS=500 SCAN=500 ALLOC=500 DURATION=2.0s REPS=2 refork-cadence=wall-clock 1.0s/gen
+
+==================== shape: struct (N=1500000) ====================
+model                   pool    items/s  tput[min..max]   PSS_MB    GC_cnt   alloc_objs      ok
+ractor                     1       6746      5810..7681  162.0MB        33     14750703     yes
+norefork                   1       7768      7619..7918  212.3MB        13     15750015     yes
+refork                     1       7473      7402..7543  215.2MB        15     15500030     yes
+                              ↳ actual refork interval p50=1.050s p95=1.070s (2 gens, target 1.0s)
+ractor                     2      10618     9856..11379  161.8MB        49     21625738     yes
+norefork                   2      15365    14807..15922  293.7MB        42     31250030     yes
+refork                     2      15215    14887..15543  279.9MB        54     31250060     yes
+                              ↳ actual refork interval p50=1.037s p95=1.039s (2 gens, target 1.0s)
+
+  verdict (struct, N=1500000, ALLOC=500, refork wall 1.0s/gen; actual interval p50=1.037s p95=1.070s):
+    ractor best:        10618 items/s @ pool 2, PSS 161.8MB
+    refork  @ iso-tput: PSS 241.5MB   |   no-refork @ iso-tput: PSS 242.8MB
+    Ractor PSS / refork PSS = 67.0% (gate ≤70-80%) ; absolute saving 79.7MB (gate ≥100MB ABSOLUTE)
+    throughput reach vs refork max = 69.8% (gate ≥75-80%)
+    → INCONCLUSIVE — throughput spread straddles the gate (raise REPS/DURATION).
+
+JSON written: phase3_migration/economic_gate_struct_matrix_runs/alloc_500.json
+refork_gate.rb:214: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:214: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:214: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:214: warning: Ractor API is experimental and may change in future versions of Ruby.

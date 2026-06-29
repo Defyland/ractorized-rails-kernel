@@ -1,0 +1,414 @@
+{
+  "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [aarch64-linux]",
+  "platform": "aarch64-linux",
+  "generated_at_utc": "2026-06-14T10:55:27Z",
+  "config": {
+    "pools": [
+      1,
+      2
+    ],
+    "shapes": [
+      "hash",
+      "struct",
+      "blob"
+    ],
+    "n_rules": 1000000,
+    "n_rules_by_shape": {
+      "hash": 800000,
+      "struct": 1500000,
+      "blob": 8000000
+    },
+    "items": 500,
+    "scan": 500,
+    "alloc": 100,
+    "duration_s": 1.2,
+    "refork_every_s": 1.0,
+    "passes_per_gen": 1,
+    "reps": 1
+  },
+  "gates": {
+    "pss_ratio_max": 0.8,
+    "absolute_saving_mb_min": 100,
+    "throughput_reach_min": 0.75
+  },
+  "shapes": [
+    {
+      "shape": "hash",
+      "n_rules": 800000,
+      "oracle": 75876568.56,
+      "frontier": {
+        "ractor": [
+          {
+            "pool": 1,
+            "throughput_items_s": 14811.136618386248,
+            "throughput_min_items_s": 14811.136618386248,
+            "throughput_max_items_s": 14811.136618386248,
+            "pss_kb": 215653,
+            "pss_mb": 210.6,
+            "correct": true,
+            "gc_count": 6,
+            "gc_time_ms": 133,
+            "allocated_objects": 3600693,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 27783.446309680523,
+            "throughput_min_items_s": 27783.446309680523,
+            "throughput_max_items_s": 27783.446309680523,
+            "pss_kb": 215671,
+            "pss_mb": 210.6,
+            "correct": true,
+            "gc_count": 10,
+            "gc_time_ms": 181,
+            "allocated_objects": 6750728,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "norefork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 15648.368792674139,
+            "throughput_min_items_s": 15648.368792674139,
+            "throughput_max_items_s": 15648.368792674139,
+            "pss_kb": 208465,
+            "pss_mb": 203.6,
+            "correct": true,
+            "gc_count": 7,
+            "gc_time_ms": 87,
+            "allocated_objects": 3800012,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 28973.499785771925,
+            "throughput_min_items_s": 28973.499785771925,
+            "throughput_max_items_s": 28973.499785771925,
+            "pss_kb": 267553,
+            "pss_mb": 261.3,
+            "correct": true,
+            "gc_count": 14,
+            "gc_time_ms": 211,
+            "allocated_objects": 7100024,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "refork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 14980.548767380484,
+            "throughput_min_items_s": 14980.548767380484,
+            "throughput_max_items_s": 14980.548767380484,
+            "pss_kb": 208654.5,
+            "pss_mb": 203.8,
+            "correct": true,
+            "gc_count": 12,
+            "gc_time_ms": 162,
+            "allocated_objects": 6200024,
+            "gens": 2,
+            "refork_interval_p50_s": 1.053937128999678,
+            "refork_interval_p95_s": 1.053937128999678
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 29789.916280086753,
+            "throughput_min_items_s": 29789.916280086753,
+            "throughput_max_items_s": 29789.916280086753,
+            "pss_kb": 267755.0,
+            "pss_mb": 261.5,
+            "correct": true,
+            "gc_count": 24,
+            "gc_time_ms": 324,
+            "allocated_objects": 12200048,
+            "gens": 2,
+            "refork_interval_p50_s": 1.0269972250025603,
+            "refork_interval_p95_s": 1.0269972250025603
+          }
+        ]
+      },
+      "verdict": {
+        "status": "tradeoff_fail",
+        "reason": "neither model Pareto-dominates; memory gate fails",
+        "ractor_best": {
+          "pool": 2,
+          "throughput_items_s": 27783.446309680523,
+          "pss_kb": 215671,
+          "pss_mb": 210.6
+        },
+        "refork_iso_pss_kb": 259747.6777167053,
+        "refork_iso_pss_mb": 253.7,
+        "norefork_iso_pss_kb": 262275.91268042976,
+        "norefork_iso_pss_mb": 256.1,
+        "refork_max_throughput_items_s": 29789.916280086753,
+        "pss_ratio": 0.8303096370132799,
+        "pss_ratio_percent": 83.0,
+        "throughput_reach": 0.9326460017026813,
+        "throughput_reach_percent": 93.3,
+        "throughput_reach_min": 0.9326460017026813,
+        "throughput_reach_max": 0.9326460017026813,
+        "absolute_saving_mb": 43.0,
+        "material_saving": false
+      }
+    },
+    {
+      "shape": "struct",
+      "n_rules": 1500000,
+      "oracle": 75875132.82,
+      "frontier": {
+        "ractor": [
+          {
+            "pool": 1,
+            "throughput_items_s": 13746.93271556805,
+            "throughput_min_items_s": 13746.93271556805,
+            "throughput_max_items_s": 13746.93271556805,
+            "pss_kb": 165489,
+            "pss_mb": 161.6,
+            "correct": true,
+            "gc_count": 8,
+            "gc_time_ms": 86,
+            "allocated_objects": 3400696,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 24771.45219479058,
+            "throughput_min_items_s": 24771.45219479058,
+            "throughput_max_items_s": 24771.45219479058,
+            "pss_kb": 165097,
+            "pss_mb": 161.2,
+            "correct": true,
+            "gc_count": 14,
+            "gc_time_ms": 164,
+            "allocated_objects": 6050737,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "norefork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 12662.409979963362,
+            "throughput_min_items_s": 12662.409979963362,
+            "throughput_max_items_s": 12662.409979963362,
+            "pss_kb": 216629,
+            "pss_mb": 211.6,
+            "correct": true,
+            "gc_count": 3,
+            "gc_time_ms": 48,
+            "allocated_objects": 3100015,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 26910.0612885718,
+            "throughput_min_items_s": 26910.0612885718,
+            "throughput_max_items_s": 26910.0612885718,
+            "pss_kb": 341329,
+            "pss_mb": 333.3,
+            "correct": true,
+            "gc_count": 6,
+            "gc_time_ms": 144,
+            "allocated_objects": 6600030,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "refork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 13470.441251383463,
+            "throughput_min_items_s": 13470.441251383463,
+            "throughput_max_items_s": 13470.441251383463,
+            "pss_kb": 186416.0,
+            "pss_mb": 182.0,
+            "correct": true,
+            "gc_count": 9,
+            "gc_time_ms": 163,
+            "allocated_objects": 5500030,
+            "gens": 2,
+            "refork_interval_p50_s": 1.0281333189996076,
+            "refork_interval_p95_s": 1.0281333189996076
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 16576.355285966485,
+            "throughput_min_items_s": 16576.355285966485,
+            "throughput_max_items_s": 16576.355285966485,
+            "pss_kb": 341195,
+            "pss_mb": 333.2,
+            "correct": true,
+            "gc_count": 4,
+            "gc_time_ms": 91,
+            "allocated_objects": 4050030,
+            "gens": 1,
+            "refork_interval_p50_s": 1.2215874860048643,
+            "refork_interval_p95_s": 1.2215874860048643
+          }
+        ]
+      },
+      "verdict": {
+        "status": "survives",
+        "reason": "Ractor Pareto-dominates refork with material saving",
+        "ractor_best": {
+          "pool": 2,
+          "throughput_items_s": 24771.45219479058,
+          "pss_kb": 165097,
+          "pss_mb": 161.2
+        },
+        "refork_iso_pss_kb": 341195.0,
+        "refork_iso_pss_mb": 333.2,
+        "norefork_iso_pss_kb": 322611.2093818799,
+        "norefork_iso_pss_mb": 315.1,
+        "refork_max_throughput_items_s": 16576.355285966485,
+        "pss_ratio": 0.4838787203798414,
+        "pss_ratio_percent": 48.4,
+        "throughput_reach": 1.4943847285755303,
+        "throughput_reach_percent": 149.4,
+        "throughput_reach_min": 1.4943847285755303,
+        "throughput_reach_max": 1.4943847285755303,
+        "absolute_saving_mb": 172.0,
+        "material_saving": true
+      }
+    },
+    {
+      "shape": "blob",
+      "n_rules": 8000000,
+      "oracle": 75717453.12,
+      "frontier": {
+        "ractor": [
+          {
+            "pool": 1,
+            "throughput_items_s": 7430.938020056391,
+            "throughput_min_items_s": 7430.938020056391,
+            "throughput_max_items_s": 7430.938020056391,
+            "pss_kb": 134097,
+            "pss_mb": 131.0,
+            "correct": true,
+            "gc_count": 138,
+            "gc_time_ms": 35,
+            "allocated_objects": 1800689,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 14590.701803206839,
+            "throughput_min_items_s": 14590.701803206839,
+            "throughput_max_items_s": 14590.701803206839,
+            "pss_kb": 134375,
+            "pss_mb": 131.2,
+            "correct": true,
+            "gc_count": 232,
+            "gc_time_ms": 69,
+            "allocated_objects": 3600742,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "norefork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 7535.040195463766,
+            "throughput_min_items_s": 7535.040195463766,
+            "throughput_max_items_s": 7535.040195463766,
+            "pss_kb": 136724,
+            "pss_mb": 133.5,
+            "correct": true,
+            "gc_count": 113,
+            "gc_time_ms": 27,
+            "allocated_objects": 1900014,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 15500.531800355171,
+            "throughput_min_items_s": 15500.531800355171,
+            "throughput_max_items_s": 15500.531800355171,
+            "pss_kb": 140132,
+            "pss_mb": 136.8,
+            "correct": true,
+            "gc_count": 226,
+            "gc_time_ms": 52,
+            "allocated_objects": 3800028,
+            "gens": 1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "refork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 7761.0353731304,
+            "throughput_min_items_s": 7761.0353731304,
+            "throughput_max_items_s": 7761.0353731304,
+            "pss_kb": 136906.0,
+            "pss_mb": 133.7,
+            "correct": true,
+            "gc_count": 190,
+            "gc_time_ms": 47,
+            "allocated_objects": 3200028,
+            "gens": 2,
+            "refork_interval_p50_s": 1.0340190670031006,
+            "refork_interval_p95_s": 1.0340190670031006
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 14814.26775727256,
+            "throughput_min_items_s": 14814.26775727256,
+            "throughput_max_items_s": 14814.26775727256,
+            "pss_kb": 140451.0,
+            "pss_mb": 137.2,
+            "correct": true,
+            "gc_count": 362,
+            "gc_time_ms": 89,
+            "allocated_objects": 6100056,
+            "gens": 2,
+            "refork_interval_p50_s": 1.0339719480034546,
+            "refork_interval_p95_s": 1.0339719480034546
+          }
+        ]
+      },
+      "verdict": {
+        "status": "tradeoff_fail",
+        "reason": "neither model Pareto-dominates; memory gate fails",
+        "ractor_best": {
+          "pool": 2,
+          "throughput_items_s": 14590.701803206839,
+          "pss_kb": 134375,
+          "pss_mb": 131.2
+        },
+        "refork_iso_pss_kb": 140338.63431232682,
+        "refork_iso_pss_mb": 137.0,
+        "norefork_iso_pss_kb": 139742.7333000794,
+        "norefork_iso_pss_mb": 136.5,
+        "refork_max_throughput_items_s": 14814.26775727256,
+        "pss_ratio": 0.9575053986983042,
+        "pss_ratio_percent": 95.8,
+        "throughput_reach": 0.9849087408349313,
+        "throughput_reach_percent": 98.5,
+        "throughput_reach_min": 0.9849087408349313,
+        "throughput_reach_max": 0.9849087408349313,
+        "absolute_saving_mb": 5.8,
+        "material_saving": false
+      }
+    }
+  ]
+}

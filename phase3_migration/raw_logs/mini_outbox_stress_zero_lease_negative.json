@@ -1,0 +1,45 @@
+{
+  "generated_at_utc": "2026-06-14T11:45:28Z",
+  "rails_env": "test",
+  "n": 100,
+  "workers": 8,
+  "batches": [
+    5
+  ],
+  "runs_per_batch": 1,
+  "jitter_ms": 10.0,
+  "lease_seconds": 0.0,
+  "max_allowed_duplicate_attempt_percent": 0.0,
+  "all_ok": false,
+  "max_duplicate_attempt_percent": 181.0,
+  "runs": [
+    {
+      "batch": 5,
+      "run": 0,
+      "workers": 8,
+      "n": 100,
+      "jitter_ms": 10.0,
+      "lease_seconds": 0.0,
+      "exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "unpublished": 0,
+      "charges": 100,
+      "distinct_charges": 100,
+      "duplicate_effect_keys": 0,
+      "attempts": 281,
+      "duplicate_attempts": 181,
+      "duplicate_attempt_percent": 181.0,
+      "max_allowed_duplicate_attempt_percent": 0.0,
+      "elapsed_s": 4.351,
+      "ok": false
+    }
+  ]
+}

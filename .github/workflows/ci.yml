@@ -1,0 +1,47 @@
+name: Research Contract
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PostgreSQL headers
+        run: sudo apt-get update && sudo apt-get install -y libpq-dev
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version-file: .ruby-version
+
+      - name: Create databases
+        run: |
+          createdb -h 127.0.0.1 -U postgres capsule_railsapp_test
+          createdb -h 127.0.0.1 -U postgres capsule_test
+
+      - name: Install dependencies
+        run: bin/setup
+
+      - name: Run repository contract
+        env:
+          MINI_APP_TEST_DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/capsule_railsapp_test
+          SLICE_B_DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/capsule_test
+        run: bin/check

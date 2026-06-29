@@ -1,0 +1,13 @@
+.DS_Store
+/.bundle/
+/vendor/bundle/
+/rails_capsule_mini_app/.bundle/
+/rails_capsule_mini_app/vendor/bundle/
+/rails_capsule_mini_app/log/*
+!/rails_capsule_mini_app/log/.keep
+/rails_capsule_mini_app/tmp/*
+!/rails_capsule_mini_app/tmp/.keep
+/rails_capsule_mini_app/config/master.key
+/rails_capsule_slice_b/.bundle/
+/rails_capsule_slice_b/vendor/bundle/
+/phase3_migration/discourse/

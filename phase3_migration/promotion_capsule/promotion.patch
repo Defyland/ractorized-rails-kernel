@@ -1,0 +1,104 @@
+diff --git a/lib/promotion.rb b/lib/promotion.rb
+index 941a845f..e1c5578d 100644
+--- a/lib/promotion.rb
++++ b/lib/promotion.rb
+@@ -102,28 +102,82 @@ class Promotion
+     true
+   end
+ 
++  # CAPSULE MIGRATION (Phase 3): eligibility now delegates to Eligibility, a pure function over a
++  # frozen, Ractor-shareable Snapshot. Behavior is identical (same comparisons, same arithmetic).
+   def self.tl2_met?(user)
+-    stat = user.user_stat
+-    return false if stat.topics_entered < SiteSetting.tl2_requires_topics_entered
+-    return false if stat.posts_read_count < SiteSetting.tl2_requires_read_posts
+-    return false if (stat.time_read / 60) < SiteSetting.tl2_requires_time_spent_mins
+-    return false if ((Time.now - user.created_at) / 60) < SiteSetting.tl2_requires_time_spent_mins
+-    return false if stat.days_visited < SiteSetting.tl2_requires_days_visited
+-    return false if stat.likes_received < SiteSetting.tl2_requires_likes_received
+-    return false if stat.likes_given < SiteSetting.tl2_requires_likes_given
+-    return false if stat.calc_topic_reply_count! < SiteSetting.tl2_requires_topic_reply_count
+-
+-    true
++    Eligibility.tl2_met?(Eligibility.snapshot(user))
+   end
+ 
+   def self.tl1_met?(user)
+-    stat = user.user_stat
+-    return false if stat.topics_entered < SiteSetting.tl1_requires_topics_entered
+-    return false if stat.posts_read_count < SiteSetting.tl1_requires_read_posts
+-    return false if (stat.time_read / 60) < SiteSetting.tl1_requires_time_spent_mins
+-    return false if ((Time.now - user.created_at) / 60) < SiteSetting.tl1_requires_time_spent_mins
++    Eligibility.tl1_met?(Eligibility.snapshot(user))
++  end
+ 
+-    true
++  # --- The capsule -------------------------------------------------------------------------------
++  # Eligibility.{tl1,tl2}_met? touch NO Rails global and run unchanged inside a non-main Ractor
++  # (proven in phase3_migration/promotion_capsule/proof.rb). SiteSetting + user_stat + the live
++  # calc_topic_reply_count! are read ONLY in `snapshot` — on the owner — and frozen into the Snapshot.
++  module Eligibility
++    Snapshot =
++      Data.define(
++        :trust_level, :created_at_epoch, :now_epoch,
++        :topics_entered, :posts_read_count, :time_read, :days_visited, :likes_received, :likes_given,
++        :topic_reply_count,
++        :tl1_requires_topics_entered, :tl1_requires_read_posts, :tl1_requires_time_spent_mins,
++        :tl2_requires_topics_entered, :tl2_requires_read_posts, :tl2_requires_time_spent_mins,
++        :tl2_requires_days_visited, :tl2_requires_likes_received, :tl2_requires_likes_given,
++        :tl2_requires_topic_reply_count
++      )
++
++    module_function
++
++    # OWNER-ONLY: the single place globals/AR are read. calc_topic_reply_count! (a live query+mutation,
++    # RESIDUE) is resolved lazily — only when it can matter (trust_level 1) — to preserve behavior.
++    def snapshot(user, now: Time.now)
++      stat = user.user_stat
++      Snapshot.new(
++        trust_level: user.trust_level,
++        created_at_epoch: user.created_at.to_f,
++        now_epoch: now.to_f,
++        topics_entered: stat.topics_entered,
++        posts_read_count: stat.posts_read_count,
++        time_read: stat.time_read,
++        days_visited: stat.days_visited,
++        likes_received: stat.likes_received,
++        likes_given: stat.likes_given,
++        topic_reply_count: user.trust_level == 1 ? stat.calc_topic_reply_count! : 0,
++        tl1_requires_topics_entered: SiteSetting.tl1_requires_topics_entered,
++        tl1_requires_read_posts: SiteSetting.tl1_requires_read_posts,
++        tl1_requires_time_spent_mins: SiteSetting.tl1_requires_time_spent_mins,
++        tl2_requires_topics_entered: SiteSetting.tl2_requires_topics_entered,
++        tl2_requires_read_posts: SiteSetting.tl2_requires_read_posts,
++        tl2_requires_time_spent_mins: SiteSetting.tl2_requires_time_spent_mins,
++        tl2_requires_days_visited: SiteSetting.tl2_requires_days_visited,
++        tl2_requires_likes_received: SiteSetting.tl2_requires_likes_received,
++        tl2_requires_likes_given: SiteSetting.tl2_requires_likes_given,
++        tl2_requires_topic_reply_count: SiteSetting.tl2_requires_topic_reply_count,
++      )
++    end
++
++    # PURE — no globals, no AR. Identical to the original comparisons; safe in a non-main Ractor.
++    def tl1_met?(s)
++      return false if s.topics_entered < s.tl1_requires_topics_entered
++      return false if s.posts_read_count < s.tl1_requires_read_posts
++      return false if (s.time_read / 60) < s.tl1_requires_time_spent_mins
++      return false if ((s.now_epoch - s.created_at_epoch) / 60) < s.tl1_requires_time_spent_mins
++      true
++    end
++
++    def tl2_met?(s)
++      return false if s.topics_entered < s.tl2_requires_topics_entered
++      return false if s.posts_read_count < s.tl2_requires_read_posts
++      return false if (s.time_read / 60) < s.tl2_requires_time_spent_mins
++      return false if ((s.now_epoch - s.created_at_epoch) / 60) < s.tl2_requires_time_spent_mins
++      return false if s.days_visited < s.tl2_requires_days_visited
++      return false if s.likes_received < s.tl2_requires_likes_received
++      return false if s.likes_given < s.tl2_requires_likes_given
++      return false if s.topic_reply_count < s.tl2_requires_topic_reply_count
++      true
++    end
+   end
+ 
+   def self.tl3_met?(user)

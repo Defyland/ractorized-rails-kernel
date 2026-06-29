@@ -1,0 +1,75 @@
+{
+  "commit": "36ee9d7cc8262ee2c90aedd4771ed0389122d227",
+  "file": "lib/promotion.rb",
+  "source_sha256": "90406a47b6e8e86fbb53bac98cadc2a6a82aa08b3accb4fe2614567f685d66d3",
+  "classification": "eligibility_only",
+  "eligibility_capsule_present": true,
+  "capsule_protocol_mentions": [],
+  "inline_write_side_effects": [
+    {
+      "line": 30,
+      "code": "if Promotion.tl1_met?(@user) && change_trust_level!(TrustLevel[1])"
+    },
+    {
+      "line": 33,
+      "code": "@user.enqueue_member_welcome_message"
+    },
+    {
+      "line": 41,
+      "code": "if Promotion.tl2_met?(@user) && change_trust_level!(TrustLevel[2])"
+    },
+    {
+      "line": 42,
+      "code": "@user.enqueue_tl2_promotion_message"
+    },
+    {
+      "line": 49,
+      "code": "Promotion.tl3_met?(@user) && change_trust_level!(TrustLevel[3])"
+    },
+    {
+      "line": 52,
+      "code": "def change_trust_level!(level, opts = {})"
+    },
+    {
+      "line": 79,
+      "code": "StaffActionLogger.new(admin).log_trust_level_change(@user, old_level, new_level)"
+    },
+    {
+      "line": 81,
+      "code": "UserHistory.create!("
+    },
+    {
+      "line": 89,
+      "code": "@user.save!"
+    },
+    {
+      "line": 90,
+      "code": "@user.user_profile.recook_bio"
+    },
+    {
+      "line": 92,
+      "code": "DiscourseEvent.trigger("
+    },
+    {
+      "line": 98,
+      "code": "Group.user_trust_level_change!(@user.id, @user.trust_level)"
+    },
+    {
+      "line": 99,
+      "code": "BadgeGranter.queue_badge_grant(Badge::Trigger::TrustLevelChange, user: @user)"
+    },
+    {
+      "line": 202,
+      "code": "user.update_column(:trust_level, TrustLevel[granted_trust_level])"
+    },
+    {
+      "line": 216,
+      "code": "Group.user_trust_level_change!(user.id, user.trust_level)"
+    },
+    {
+      "line": 219,
+      "code": "user.change_trust_level!(TrustLevel[2], log_action_for: performed_by || Discourse.system_user)"
+    }
+  ],
+  "conclusion": "Promotion patch validates eligibility extraction only; Proposal + EffectIntent + outbox are not implemented in real Discourse."
+}

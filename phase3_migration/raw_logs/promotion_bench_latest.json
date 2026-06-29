@@ -1,0 +1,33 @@
+{
+  "generated_at_utc": "2026-06-14T13:14:25Z",
+  "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]",
+  "status": "pass",
+  "bench_sha256": "acd4bd005c7c03d31092f29a79d6a4e185e4510b84863104ce70fac52977c178",
+  "capsule_sha256": "325ecdf26c2faefe027cf316d70372ece11e1d3ea374abbcb1e5674b75db7c10",
+  "correct": true,
+  "config": {
+    "n": 1000000,
+    "per_ractor": 2000000,
+    "ractors": 4
+  },
+  "throughput": {
+    "inline_full_before_decisions_s": 1755513.1896654542,
+    "owner_snapshot_build_plus_decide_decisions_s": 479139.2358527496,
+    "decide_only_snapshot_reused_decisions_s": 3123057.8466108297,
+    "decide_only_x4_ractors_decisions_s": 12872932.892455254
+  },
+  "ratios": {
+    "owner_snapshot_build_plus_decide_vs_inline": 0.2729339993988074,
+    "decide_x4_ractors_vs_decide_only": 4.121900241593371
+  },
+  "payload": {
+    "fields": 21,
+    "bytes": 531
+  },
+  "interpretation": {
+    "compatibility_only_not_end_to_end_win": true,
+    "pure_decide_parallelizes": true,
+    "owner_build_cost_included": true,
+    "calc_topic_reply_count_is_under_counted_mock": true
+  }
+}

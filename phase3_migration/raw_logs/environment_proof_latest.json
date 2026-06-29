@@ -1,0 +1,294 @@
+{
+  "generated_at_utc": "2026-06-14T12:34:23Z",
+  "status": "pass",
+  "required": [
+    "host_ruby_v",
+    "host_bundle_v",
+    "host_ruby_description",
+    "discourse_head",
+    "discourse_status_short",
+    "container_pg_isready_capsule_test",
+    "container_pg_isready_capsule_railsapp_test",
+    "container_psql_version",
+    "container_pg_databases",
+    "container_pg_server_version",
+    "mini_rails_rails_v",
+    "mini_rails_boot_probe",
+    "slice_b_ar_postgres_probe"
+  ],
+  "missing": [],
+  "failed": [],
+  "commands": [
+    {
+      "name": "host_ruby_v",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "/opt/homebrew/Cellar/ruby/4.0.5/bin/ruby",
+        "-v"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]\n",
+      "stderr": ""
+    },
+    {
+      "name": "host_bundle_v",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "bundle",
+        "-v"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "4.0.11\n",
+      "stderr": ""
+    },
+    {
+      "name": "host_ruby_description",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "/opt/homebrew/Cellar/ruby/4.0.5/bin/ruby",
+        "-e",
+        "puts RUBY_DESCRIPTION"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]\n",
+      "stderr": ""
+    },
+    {
+      "name": "docker_version",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "docker",
+        "--version"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "Docker version 27.4.0, build bde2b89\n",
+      "stderr": ""
+    },
+    {
+      "name": "discourse_head",
+      "cwd": "phase3_migration/discourse",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "36ee9d7cc8262ee2c90aedd4771ed0389122d227\n",
+      "stderr": ""
+    },
+    {
+      "name": "discourse_branch",
+      "cwd": "phase3_migration/discourse",
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "main\n",
+      "stderr": ""
+    },
+    {
+      "name": "discourse_status_short",
+      "cwd": "phase3_migration/discourse",
+      "argv": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": " M lib/promotion.rb\n?? run_migrate.rb\n",
+      "stderr": ""
+    },
+    {
+      "name": "container_pg_isready_capsule_test",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "docker",
+        "exec",
+        "capsule_pg",
+        "pg_isready",
+        "-U",
+        "capsule",
+        "-d",
+        "capsule_test"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "/var/run/postgresql:5432 - accepting connections\n",
+      "stderr": ""
+    },
+    {
+      "name": "container_pg_isready_capsule_railsapp_test",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "docker",
+        "exec",
+        "capsule_pg",
+        "pg_isready",
+        "-U",
+        "capsule",
+        "-d",
+        "capsule_railsapp_test"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "/var/run/postgresql:5432 - accepting connections\n",
+      "stderr": ""
+    },
+    {
+      "name": "container_psql_version",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "docker",
+        "exec",
+        "capsule_pg",
+        "psql",
+        "--version"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "psql (PostgreSQL) 16.14 (Debian 16.14-1.pgdg13+1)\n",
+      "stderr": ""
+    },
+    {
+      "name": "container_pg_databases",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "docker",
+        "exec",
+        "capsule_pg",
+        "psql",
+        "-U",
+        "capsule",
+        "-d",
+        "capsule_test",
+        "-Atc",
+        "select datname from pg_database where datname in ('capsule_test','capsule_railsapp_test','capsule_railsapp') order by 1"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "capsule_railsapp_test\ncapsule_test\n",
+      "stderr": ""
+    },
+    {
+      "name": "container_pg_server_version",
+      "cwd": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel",
+      "argv": [
+        "docker",
+        "exec",
+        "capsule_pg",
+        "psql",
+        "-U",
+        "capsule",
+        "-d",
+        "capsule_test",
+        "-Atc",
+        "select current_database() || '|' || current_setting('server_version')"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "capsule_test|16.14 (Debian 16.14-1.pgdg13+1)\n",
+      "stderr": ""
+    },
+    {
+      "name": "mini_rails_ruby_v",
+      "cwd": "rails_capsule_mini_app",
+      "argv": [
+        "/opt/homebrew/Cellar/ruby/4.0.5/bin/ruby",
+        "-v"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]\n",
+      "stderr": ""
+    },
+    {
+      "name": "mini_rails_bundle_v",
+      "cwd": "rails_capsule_mini_app",
+      "argv": [
+        "bundle",
+        "-v"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "4.0.11\n",
+      "stderr": ""
+    },
+    {
+      "name": "mini_rails_rails_v",
+      "cwd": "rails_capsule_mini_app",
+      "argv": [
+        "bundle",
+        "exec",
+        "rails",
+        "-v"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "Rails 8.1.3\n",
+      "stderr": ""
+    },
+    {
+      "name": "mini_rails_boot_probe",
+      "cwd": "rails_capsule_mini_app",
+      "argv": [
+        "bundle",
+        "exec",
+        "/opt/homebrew/Cellar/ruby/4.0.5/bin/ruby",
+        "-e",
+        "require_relative \"config/environment\"\nputs \"ruby=#{RUBY_DESCRIPTION}\"\nputs \"rails=#{Rails.version}\"\nputs \"active_record=#{ActiveRecord.version}\"\nputs \"eager_load=#{Rails.application.config.eager_load}\"\nputs \"cache_class=#{Rails.cache.class.name}\"\nputs \"database=#{ActiveRecord::Base.connection_db_config.database}\"\nputs \"server_version=#{ActiveRecord::Base.connection.select_value('select version()')}\"\n"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "ruby=ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]\nrails=8.1.3\nactive_record=8.1.3\neager_load=true\ncache_class=ActiveSupport::Cache::MemoryStore\ndatabase=capsule_railsapp_test\nserver_version=PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit\n",
+      "stderr": ""
+    },
+    {
+      "name": "slice_b_ruby_v",
+      "cwd": "rails_capsule_slice_b",
+      "argv": [
+        "/opt/homebrew/Cellar/ruby/4.0.5/bin/ruby",
+        "-v"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]\n",
+      "stderr": ""
+    },
+    {
+      "name": "slice_b_bundle_v",
+      "cwd": "rails_capsule_slice_b",
+      "argv": [
+        "bundle",
+        "-v"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "4.0.11\n",
+      "stderr": ""
+    },
+    {
+      "name": "slice_b_ar_postgres_probe",
+      "cwd": "rails_capsule_slice_b",
+      "argv": [
+        "bundle",
+        "exec",
+        "/opt/homebrew/Cellar/ruby/4.0.5/bin/ruby",
+        "-e",
+        "require_relative \"boot\"\nputs \"ruby=#{RUBY_DESCRIPTION}\"\nputs \"active_record=#{ActiveRecord.version}\"\nputs \"database=#{ActiveRecord::Base.connection_db_config.database}\"\nputs \"server_version=#{ActiveRecord::Base.connection.select_value('select version()')}\"\n"
+      ],
+      "exitstatus": 0,
+      "success": true,
+      "stdout": "ruby=ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]\nactive_record=8.1.3\ndatabase=capsule_test\nserver_version=PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit\n",
+      "stderr": ""
+    }
+  ]
+}

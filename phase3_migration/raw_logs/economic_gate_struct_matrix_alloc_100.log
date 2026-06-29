@@ -1,0 +1,26 @@
+Ruby 4.0.5 (aarch64-linux) refork death-test (frontier / iso-throughput)
+POOLS=[1, 2] SHAPES=[:struct] N_by_shape={struct: 1500000} ITEMS=500 SCAN=500 ALLOC=100 DURATION=2.0s REPS=2 refork-cadence=wall-clock 1.0s/gen
+
+==================== shape: struct (N=1500000) ====================
+model                   pool    items/s  tput[min..max]   PSS_MB    GC_cnt   alloc_objs      ok
+ractor                     1      14131    14060..14203  162.0MB        13      5700702     yes
+norefork                   1      13849    13583..14115  212.3MB         5      5650015     yes
+refork                     1      13351    13086..13616  205.6MB         6      5500030     yes
+                              ↳ actual refork interval p50=1.038s p95=1.046s (2 gens, target 1.0s)
+ractor                     2      23141    20824..25458  161.8MB        21      9425743     yes
+norefork                   2      27458    27053..27864  293.5MB        15     11200030     yes
+refork                     2      26606    26495..26717  255.7MB        19     10850060     yes
+                              ↳ actual refork interval p50=1.019s p95=1.025s (2 gens, target 1.0s)
+
+  verdict (struct, N=1500000, ALLOC=100, refork wall 1.0s/gen; actual interval p50=1.025s p95=1.046s):
+    ractor best:        23141 items/s @ pool 2, PSS 161.8MB
+    refork  @ iso-tput: PSS 242.6MB   |   no-refork @ iso-tput: PSS 267.8MB
+    Ractor PSS / refork PSS = 66.7% (gate ≤70-80%) ; absolute saving 80.8MB (gate ≥100MB ABSOLUTE)
+    throughput reach vs refork max = 87.0% (gate ≥75-80%)
+    → TRADEOFF (neither Pareto-dominates): Ractor throughput 87% of refork-max, Ractor PSS 67% of refork. Memory gate (≤80% AND ≥100MB): fail; throughput gate (≥75%): pass → OVERALL FAIL.
+
+JSON written: phase3_migration/economic_gate_struct_matrix_runs/alloc_100.json
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.

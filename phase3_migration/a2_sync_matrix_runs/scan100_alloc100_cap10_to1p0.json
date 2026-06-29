@@ -1,0 +1,69 @@
+{
+  "generated_at_utc": "2026-06-14T16:33:13Z",
+  "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [aarch64-linux]",
+  "platform": "aarch64-linux",
+  "config": {
+    "n_rules": 80000,
+    "items": 300,
+    "scan": 100,
+    "duration_s": 1.0,
+    "alloc": 100,
+    "reps": 2,
+    "pool": 4,
+    "cap_every": 10,
+    "cache_size": 1000,
+    "timeout_s": 1.0
+  },
+  "models": {
+    "ractor_no_cache": {
+      "tput": 107785.8257218282,
+      "tlo": 103345.94251353203,
+      "thi": 112225.70893012435,
+      "pss": 28316.0,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0,
+      "timeouts": 0,
+      "stale": 0,
+      "correct": true
+    },
+    "ractor_sync_cache": {
+      "tput": 82309.89731717348,
+      "tlo": 81423.3805027433,
+      "thi": 83196.41413160367,
+      "pss": 28300.0,
+      "p50": 0.09377099999596794,
+      "p95": 0.4269192499961605,
+      "p99": 1.0084330000026398,
+      "timeouts": 0,
+      "stale": 0,
+      "correct": true
+    },
+    "process_direct_cache": {
+      "tput": 162886.67223396085,
+      "tlo": 160779.74171307628,
+      "thi": 164993.60275484543,
+      "pss": 56978.5,
+      "p50": 0.0003125000063164407,
+      "p95": 0.00100025000193682,
+      "p99": 0.0017292500018584178,
+      "timeouts": 0,
+      "stale": 0,
+      "correct": true
+    }
+  },
+  "derived": {
+    "sync_gateway_tax": 0.23635694428321724,
+    "sync_gateway_tax_percent": 23.6,
+    "sync_gateway_tax_min_percent": 19.5,
+    "sync_gateway_tax_max_percent": 27.4,
+    "throughput_vs_process": 0.5053200251948691,
+    "throughput_vs_process_percent": 50.5,
+    "throughput_vs_process_min_percent": 49.3,
+    "throughput_vs_process_max_percent": 51.7
+  },
+  "verdict": {
+    "status": "fail",
+    "reason": "loses to the process pool (51% < 75%)"
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [aarch64-linux]",
+  "platform": "aarch64-linux",
+  "generated_at_utc": "2026-06-14T15:21:52Z",
+  "config": {
+    "pools": [
+      1,
+      2,
+      4
+    ],
+    "shapes": [
+      "struct"
+    ],
+    "n_rules": 1000000,
+    "n_rules_by_shape": {
+      "struct": 5000000
+    },
+    "items": 2000,
+    "scan": 1500,
+    "alloc": 500,
+    "duration_s": 8.0,
+    "refork_every_s": 1.0,
+    "passes_per_gen": 1,
+    "reps": 6
+  },
+  "gates": {
+    "pss_ratio_max": 0.8,
+    "absolute_saving_mb_min": 100,
+    "throughput_reach_min": 0.75
+  },
+  "shapes": [
+    {
+      "shape": "struct",
+      "n_rules": 5000000,
+      "oracle": 956207274.13,
+      "frontier": {
+        "ractor": [
+          {
+            "pool": 1,
+            "throughput_items_s": 3968.568601270393,
+            "throughput_min_items_s": 3814.9205892060777,
+            "throughput_max_items_s": 4047.6789123083263,
+            "pss_kb": 650096.0,
+            "pss_mb": 634.9,
+            "correct": true,
+            "gc_count": 9.0,
+            "gc_time_ms": 649.5,
+            "allocated_objects": 32002203.0,
+            "gens_median": 1.0,
+            "wall_s": 8.32777390199999,
+            "compute_wall_s": 8.317571479500032,
+            "snap_artifact_s": 0.0065120985000248766,
+            "snap_artifact_pct_of_wall": 0.08,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 6837.634382538466,
+            "throughput_min_items_s": 6173.55247221815,
+            "throughput_max_items_s": 7113.671417938619,
+            "pss_kb": 649718.0,
+            "pss_mb": 634.5,
+            "correct": true,
+            "gc_count": 17.0,
+            "gc_time_ms": 1231.0,
+            "allocated_objects": 56002244.0,
+            "gens_median": 1.0,
+            "wall_s": 8.197223189000056,
+            "compute_wall_s": 8.190031994499918,
+            "snap_artifact_s": 0.0076765840000234675,
+            "snap_artifact_pct_of_wall": 0.09,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 4,
+            "throughput_items_s": 10551.196821681711,
+            "throughput_min_items_s": 9260.684419140198,
+            "throughput_max_items_s": 10874.900136332482,
+            "pss_kb": 649679.0,
+            "pss_mb": 634.5,
+            "correct": true,
+            "gc_count": 26.5,
+            "gc_time_ms": 2010.5,
+            "allocated_objects": 86502298.0,
+            "gens_median": 1.0,
+            "wall_s": 8.13690867999992,
+            "compute_wall_s": 8.128288707999786,
+            "snap_artifact_s": 0.007902538000053028,
+            "snap_artifact_pct_of_wall": 0.1,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "norefork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 3989.693067028137,
+            "throughput_min_items_s": 3535.222869231218,
+            "throughput_max_items_s": 4044.9007938691148,
+            "pss_kb": 596321.0,
+            "pss_mb": 582.3,
+            "correct": true,
+            "gc_count": 11.0,
+            "gc_time_ms": 670.0,
+            "allocated_objects": 34000015.0,
+            "gens_median": 1.0,
+            "wall_s": 8.489191634000008,
+            "compute_wall_s": 8.464058274499962,
+            "snap_artifact_s": 0.007922661000009157,
+            "snap_artifact_pct_of_wall": 0.09,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 7263.408932039531,
+            "throughput_min_items_s": 5610.254347813063,
+            "throughput_max_items_s": 7789.778330115704,
+            "pss_kb": 903313.0,
+            "pss_mb": 882.1,
+            "correct": true,
+            "gc_count": 19.0,
+            "gc_time_ms": 1251.5,
+            "allocated_objects": 59000030.0,
+            "gens_median": 1.0,
+            "wall_s": 8.231262633000028,
+            "compute_wall_s": 8.220097864999957,
+            "snap_artifact_s": 0.015905541500046638,
+            "snap_artifact_pct_of_wall": 0.19,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 4,
+            "throughput_items_s": 10699.691073946931,
+            "throughput_min_items_s": 8908.185140201696,
+            "throughput_max_items_s": 12498.749942732373,
+            "pss_kb": 1518297.0,
+            "pss_mb": 1482.7,
+            "correct": true,
+            "gc_count": 27.0,
+            "gc_time_ms": 2870.0,
+            "allocated_objects": 87750060.0,
+            "gens_median": 1.0,
+            "wall_s": 8.214428108000106,
+            "compute_wall_s": 8.171479230500154,
+            "snap_artifact_s": 0.0415342134998582,
+            "snap_artifact_pct_of_wall": 0.51,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "refork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 3486.9517062390487,
+            "throughput_min_items_s": 3014.946017636289,
+            "throughput_max_items_s": 3537.2104545542124,
+            "pss_kb": 598354.0,
+            "pss_mb": 584.3,
+            "correct": true,
+            "gc_count": 7.5,
+            "gc_time_ms": 818.5,
+            "allocated_objects": 30000112.5,
+            "gens_median": 7.5,
+            "wall_s": 8.890682454,
+            "compute_wall_s": 8.835190097499833,
+            "snap_artifact_s": 0.05284675800004379,
+            "snap_artifact_pct_of_wall": 0.59,
+            "refork_interval_p50_s": 1.145617050999931,
+            "refork_interval_p95_s": 1.3372091250000722
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 6486.350918849739,
+            "throughput_min_items_s": 3367.7998593409716,
+            "throughput_max_items_s": 6642.810640530928,
+            "pss_kb": 885738.75,
+            "pss_mb": 865.0,
+            "correct": true,
+            "gc_count": 14.0,
+            "gc_time_ms": 1693.0,
+            "allocated_objects": 56000210.0,
+            "gens_median": 7.0,
+            "wall_s": 8.65984640150009,
+            "compute_wall_s": 8.580756371999769,
+            "snap_artifact_s": 0.07872548800014556,
+            "snap_artifact_pct_of_wall": 0.91,
+            "refork_interval_p50_s": 1.2294119460000275,
+            "refork_interval_p95_s": 1.825507663000053
+          },
+          {
+            "pool": 4,
+            "throughput_items_s": 9586.998329942802,
+            "throughput_min_items_s": 7129.765875073631,
+            "throughput_max_items_s": 11309.139477113407,
+            "pss_kb": 1190134.0,
+            "pss_mb": 1162.2,
+            "correct": true,
+            "gc_count": 24.0,
+            "gc_time_ms": 2935.5,
+            "allocated_objects": 80750420.0,
+            "gens_median": 7.0,
+            "wall_s": 8.06081294149999,
+            "compute_wall_s": 7.925737703000095,
+            "snap_artifact_s": 0.14036060750004253,
+            "snap_artifact_pct_of_wall": 1.74,
+            "refork_interval_p50_s": 1.1916663960000733,
+            "refork_interval_p95_s": 1.6010185410000304
+          }
+        ]
+      },
+      "verdict": {
+        "status": "survives",
+        "reason": "Ractor Pareto-dominates refork with material saving",
+        "ractor_best": {
+          "pool": 4,
+          "throughput_items_s": 10551.196821681711,
+          "pss_kb": 649679.0,
+          "pss_mb": 634.5
+        },
+        "refork_iso_pss_kb": 1190134.0,
+        "refork_iso_pss_mb": 1162.2,
+        "norefork_iso_pss_kb": 1491721.3040985037,
+        "norefork_iso_pss_mb": 1456.8,
+        "refork_max_throughput_items_s": 9586.998329942802,
+        "refork_interval_p50_s": 1.1916663960000733,
+        "refork_interval_p95_s": 1.406107909999946,
+        "pss_ratio": 0.5458872698368419,
+        "pss_ratio_percent": 54.6,
+        "throughput_reach": 1.1005735537396992,
+        "throughput_reach_percent": 110.1,
+        "throughput_reach_min": 0.8188672920588945,
+        "throughput_reach_max": 1.5252815207231716,
+        "absolute_saving_mb": 527.8,
+        "material_saving": true
+      }
+    }
+  ]
+}

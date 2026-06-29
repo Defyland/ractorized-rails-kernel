@@ -1,0 +1,162 @@
+{
+  "generated_at_utc": "2026-06-14T17:00:10Z",
+  "commit": "36ee9d7cc8262ee2c90aedd4771ed0389122d227",
+  "file": "lib/promotion.rb",
+  "source_sha256": "90406a47b6e8e86fbb53bac98cadc2a6a82aa08b3accb4fe2614567f685d66d3",
+  "spec_runner_sha256": "673dd595af8f63b40bb25f0209808e7d449e9a78e1eab3113afd546a4ac3bf07",
+  "classification": "eligibility_only",
+  "write_side_implemented": false,
+  "inline_effect_count": 16,
+  "by_kind": {
+    "commit": 7,
+    "effect": 8,
+    "residue": 1
+  },
+  "effect_intents_required": [
+    "member_welcome_message",
+    "tl2_promotion_message",
+    "staff_action_log",
+    "user_history",
+    "discourse_event_user_promoted",
+    "group_trust_level_change",
+    "badge_grant"
+  ],
+  "mapping": [
+    {
+      "line": 30,
+      "code": "if Promotion.tl1_met?(@user) && change_trust_level!(TrustLevel[1])",
+      "pattern": "change_trust_level!",
+      "kind": "commit",
+      "effect_intent": null,
+      "note": "the trust_level state change is the owner optimistic COMMIT, not an outbox effect"
+    },
+    {
+      "line": 33,
+      "code": "@user.enqueue_member_welcome_message",
+      "pattern": "enqueue_member_welcome_message",
+      "kind": "effect",
+      "effect_intent": "member_welcome_message",
+      "idempotency_key_basis": "user_id+'tl1_welcome'"
+    },
+    {
+      "line": 41,
+      "code": "if Promotion.tl2_met?(@user) && change_trust_level!(TrustLevel[2])",
+      "pattern": "change_trust_level!",
+      "kind": "commit",
+      "effect_intent": null,
+      "note": "the trust_level state change is the owner optimistic COMMIT, not an outbox effect"
+    },
+    {
+      "line": 42,
+      "code": "@user.enqueue_tl2_promotion_message",
+      "pattern": "enqueue_tl2_promotion_message",
+      "kind": "effect",
+      "effect_intent": "tl2_promotion_message",
+      "idempotency_key_basis": "user_id+'tl2_promotion'"
+    },
+    {
+      "line": 49,
+      "code": "Promotion.tl3_met?(@user) && change_trust_level!(TrustLevel[3])",
+      "pattern": "change_trust_level!",
+      "kind": "commit",
+      "effect_intent": null,
+      "note": "the trust_level state change is the owner optimistic COMMIT, not an outbox effect"
+    },
+    {
+      "line": 52,
+      "code": "def change_trust_level!(level, opts = {})",
+      "pattern": "change_trust_level!",
+      "kind": "commit",
+      "effect_intent": null,
+      "note": "the trust_level state change is the owner optimistic COMMIT, not an outbox effect"
+    },
+    {
+      "line": 79,
+      "code": "StaffActionLogger.new(admin).log_trust_level_change(@user, old_level, new_level)",
+      "pattern": "StaffActionLogger",
+      "kind": "effect",
+      "effect_intent": "staff_action_log",
+      "idempotency_key_basis": "user_id+target_trust_level+'staff_action'"
+    },
+    {
+      "line": 81,
+      "code": "UserHistory.create!(",
+      "pattern": "UserHistory.create!",
+      "kind": "effect",
+      "effect_intent": "user_history",
+      "idempotency_key_basis": "user_id+target_trust_level+'user_history'"
+    },
+    {
+      "line": 89,
+      "code": "@user.save!",
+      "pattern": "@user.save!",
+      "kind": "commit",
+      "effect_intent": null,
+      "note": "persisting the user row is part of the owner commit"
+    },
+    {
+      "line": 90,
+      "code": "@user.user_profile.recook_bio",
+      "pattern": "recook_bio",
+      "kind": "residue",
+      "effect_intent": null,
+      "note": "PrettyText/native cook — owner-side pre-resolve, cannot run in a Ractor"
+    },
+    {
+      "line": 92,
+      "code": "DiscourseEvent.trigger(",
+      "pattern": "DiscourseEvent.trigger",
+      "kind": "effect",
+      "effect_intent": "discourse_event_user_promoted",
+      "idempotency_key_basis": "user_id+target_trust_level+'user_promoted'"
+    },
+    {
+      "line": 98,
+      "code": "Group.user_trust_level_change!(@user.id, @user.trust_level)",
+      "pattern": "Group.user_trust_level_change!",
+      "kind": "effect",
+      "effect_intent": "group_trust_level_change",
+      "idempotency_key_basis": "user_id+target_trust_level+'group_change'"
+    },
+    {
+      "line": 99,
+      "code": "BadgeGranter.queue_badge_grant(Badge::Trigger::TrustLevelChange, user: @user)",
+      "pattern": "BadgeGranter.queue_badge_grant",
+      "kind": "effect",
+      "effect_intent": "badge_grant",
+      "idempotency_key_basis": "user_id+target_trust_level+'badge'"
+    },
+    {
+      "line": 202,
+      "code": "user.update_column(:trust_level, TrustLevel[granted_trust_level])",
+      "pattern": "update_column",
+      "kind": "commit",
+      "effect_intent": null,
+      "note": "direct column write is owner-side commit (skips callbacks)"
+    },
+    {
+      "line": 216,
+      "code": "Group.user_trust_level_change!(user.id, user.trust_level)",
+      "pattern": "Group.user_trust_level_change!",
+      "kind": "effect",
+      "effect_intent": "group_trust_level_change",
+      "idempotency_key_basis": "user_id+target_trust_level+'group_change'"
+    },
+    {
+      "line": 219,
+      "code": "user.change_trust_level!(TrustLevel[2], log_action_for: performed_by || Discourse.system_user)",
+      "pattern": "change_trust_level!",
+      "kind": "commit",
+      "effect_intent": null,
+      "note": "the trust_level state change is the owner optimistic COMMIT, not an outbox effect"
+    }
+  ],
+  "smallest_realistic_patch": [
+    "1. Owner builds CapsuleEligibility::Snapshot + decides target trust_level (already done — eligibility_only).",
+    "2. change_trust_level! becomes: owner optimistic AR COMMIT of the trust_level change (the `commit` rows).",
+    "3. Each `effect` row becomes an idempotent OutboxEvent enqueued in the SAME transaction as the commit, keyed by idempotency_key_basis (exactly-once ENQUEUE).",
+    "4. A dispatcher delivers each EffectIntent at-least-once; the consumer dedups by idempotency_key (NOT exactly-once external effect).",
+    "5. `residue` rows (recook_bio) stay owner-side (native, pre-resolved)."
+  ],
+  "blocker": "This SPEC is not implemented in Discourse: no Proposal/EffectIntent/Outbox/idempotency_key tokens exist in lib/promotion.rb. Promotion remains eligibility_only; the write side is mapped, not migrated."
+}

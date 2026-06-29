@@ -1,0 +1,779 @@
+{
+  "generated_at_utc": "2026-06-18T18:48:08Z",
+  "status": "pass",
+  "current_project_verdict": {
+    "status": "pivot",
+    "reason": "current evidence supports narrow compatibility research, not a product/runtime continue",
+    "promotion_scope": "eligibility_only",
+    "promotion_patch_files": [
+      "lib/promotion.rb"
+    ],
+    "promotion_benchmark_owner_ratio": 0.2729339993988074,
+    "guardian": "structural_non_fit",
+    "report": "partial",
+    "economic_survives_any_current_matrix": false,
+    "struct_rerun_status": "memory_favorable_throughput_unconfirmed",
+    "economic_final_gate_passed": false,
+    "a2_all_cells_fail": false,
+    "a2_chatty_sync_is_killer": true,
+    "a2_tolerable_cell_count": 12,
+    "a2_aggressive_control_all_fail": true,
+    "promotion_amortizes": false,
+    "promotion_amortization_classification": "compatibility_only_no_amortization",
+    "promotion_write_side_spec_classification": "eligibility_only",
+    "promotion_write_side_effect_intents_required": 7,
+    "full_discourse_write_side_outbox_validated": false,
+    "strong_gate_v2_full_host_run": false,
+    "strong_gate_v2_full_recompute_self_test": "pass",
+    "strong_gate_v2_full_validated_runs": 0,
+    "strong_gate_v2_run_class": "reduced",
+    "strong_gate_v2_reduced_alloc0_control": "pivot",
+    "strong_gate_v2_reduced_alloc100": "survives",
+    "strong_gate_v2_reduced_alloc100_single_operating_point": true,
+    "advance_to_gem_or_dsl": false
+  },
+  "checks": [
+    {
+      "name": "economic_gate",
+      "status": "pass",
+      "all_shape_statuses": {
+        "hash": {
+          "0": "kill",
+          "100": "economic_no_op",
+          "500": "tradeoff_fail"
+        },
+        "struct": {
+          "0": "kill",
+          "100": "economic_no_op",
+          "500": "tradeoff_fail"
+        },
+        "blob": {
+          "0": "tradeoff_fail",
+          "100": "tradeoff_fail",
+          "500": "tradeoff_fail"
+        }
+      },
+      "struct_stability_statuses": {
+        "0": "kill",
+        "100": "tradeoff_fail",
+        "500": "inconclusive"
+      },
+      "legacy_positive_probes_superseded": true,
+      "legacy_positive_probes": [
+        {
+          "path": "phase3_migration/economic_gate_large_probe.json",
+          "shape": "struct",
+          "absolute_saving_mb": 172.0,
+          "throughput_reach_percent": 149.4
+        },
+        {
+          "path": "phase3_migration/economic_gate_struct_probe.json",
+          "shape": "struct",
+          "absolute_saving_mb": 115.6,
+          "throughput_reach_percent": 96.0
+        }
+      ],
+      "legacy_refork_probe_logs": {
+        "checked_probe_logs": [
+          {
+            "json_file": "phase3_migration/economic_gate_large_probe.json",
+            "raw_log": "phase3_migration/raw_logs/refork_gate_large_probe_latest.log",
+            "surviving_shapes": [
+              "struct"
+            ]
+          },
+          {
+            "json_file": "phase3_migration/economic_gate_struct_probe.json",
+            "raw_log": "phase3_migration/raw_logs/refork_gate_struct_probe_latest.log",
+            "surviving_shapes": [
+              "struct"
+            ]
+          }
+        ],
+        "superseded_smoke_log": "phase3_migration/raw_logs/refork_gate_smoke_latest.log"
+      },
+      "struct_rerun": {
+        "status": "memory_favorable_throughput_unconfirmed",
+        "alloc100": {
+          "status": "tradeoff_fail",
+          "absolute_saving_mb": 53.6,
+          "pss_ratio_percent": 92.2,
+          "throughput_reach_percent": 99.7
+        },
+        "alloc500_latest": {
+          "status": "survives",
+          "absolute_saving_mb": 527.8,
+          "pss_ratio_percent": 54.6,
+          "throughput_reach_percent": 110.1
+        },
+        "alloc500_prior": {
+          "status": "inconclusive",
+          "absolute_saving_mb": 578.5,
+          "pss_ratio_percent": 47.7,
+          "throughput_reach_percent": 71.4
+        }
+      },
+      "matrix_runs_checked": 3,
+      "struct_runs_checked": 3,
+      "config_consistency_checked": true,
+      "raw_log_json_consistency_checked": true,
+      "runner_hashes_guarded": {
+        "refork_gate.rb": "5133daf8893133e22d796a92b39e6bc42bc59b38f5c889e57454acd81675cc9c",
+        "bench_kernel.rb": "be9df2f9bb7db950f6ae71dab369590910a88d80b683207465fe28a2b788cb5e",
+        "phase3_migration/economic_gate_matrix.rb": "12104a403058a55b094bce584accb38ded6771deaf096395fd6c14505408737a"
+      },
+      "linux_ruby_cells_checked": 6
+    },
+    {
+      "name": "environment_proof",
+      "status": "pass",
+      "host_ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]",
+      "mini_rails_db": "capsule_railsapp_test",
+      "slice_b_db": "capsule_test",
+      "postgres": "16.14",
+      "command_count": 19,
+      "raw_log_json_consistency_checked": true,
+      "runner_hashes_guarded": {
+        "phase3_migration/environment_proof.rb": "1e9c631fa56bddf966570a2d83fe3b611fce889ce65ff47fe1b343f2751565a1"
+      }
+    },
+    {
+      "name": "capsule_hostility_audit",
+      "status": "pass",
+      "source_mode": "git_show+git_ls_tree",
+      "services_checked": [
+        "guardian",
+        "report",
+        "promotion"
+      ],
+      "runner_hashes_guarded": {
+        "phase3_migration/audit.rb": "dfd739feffe136663e1dbcd81a3fbd99e915896dc8f5428acea74c902c0c89f0"
+      }
+    },
+    {
+      "name": "a2_sync_gateway",
+      "status": "pass",
+      "cells": 72,
+      "failures": 53,
+      "passes": 12,
+      "inconclusive": 7,
+      "any_cell_passes": true,
+      "aggressive_control_all_fail": true,
+      "chatty_cap_every": 1,
+      "chatty_all_fail": true,
+      "passing_cells": [
+        {
+          "scan": 100,
+          "alloc": 0,
+          "cap_every": 100,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 100,
+          "alloc": 0,
+          "cap_every": 1000,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 500,
+          "alloc": 0,
+          "cap_every": 100,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 500,
+          "alloc": 0,
+          "cap_every": 1000,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 500,
+          "alloc": 100,
+          "cap_every": 100,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 500,
+          "alloc": 100,
+          "cap_every": 1000,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 1500,
+          "alloc": 0,
+          "cap_every": 10,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 1500,
+          "alloc": 0,
+          "cap_every": 100,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 1500,
+          "alloc": 0,
+          "cap_every": 1000,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 1500,
+          "alloc": 100,
+          "cap_every": 10,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 1500,
+          "alloc": 100,
+          "cap_every": 100,
+          "timeout_s": 1.0
+        },
+        {
+          "scan": 1500,
+          "alloc": 100,
+          "cap_every": 1000,
+          "timeout_s": 1.0
+        }
+      ],
+      "aggregate_consistency_checked": true,
+      "raw_log_json_consistency_checked": true,
+      "config_consistency_checked": true,
+      "runner_hashes_guarded": {
+        "a2_cache_sync.rb": "c900ab383cdec1e0e7c802403fe0d74680b9be1e70c7941f2e328abeae4ca6e0",
+        "bench_kernel.rb": "be9df2f9bb7db950f6ae71dab369590910a88d80b683207465fe28a2b788cb5e",
+        "phase3_migration/a2_sync_matrix.rb": "4bcfb2c139bef55e2f5cc24914175d8fbf323b803a31518e64a416992d37b578"
+      },
+      "linux_ruby_cells_checked": 72
+    },
+    {
+      "name": "outbox_attempt_budget",
+      "status": "pass",
+      "leased_positive_files": [
+        "phase3_migration/raw_logs/mini_outbox_stress_leased_reduced.json",
+        "phase3_migration/raw_logs/mini_outbox_stress_leased_10k.json",
+        "phase3_migration/raw_logs/slice_b_outbox_stress_leased_reduced.json",
+        "phase3_migration/raw_logs/slice_b_outbox_stress_leased_10k.json"
+      ],
+      "negative_control_files": [
+        "phase3_migration/raw_logs/mini_outbox_stress_zero_lease_negative.json",
+        "phase3_migration/raw_logs/slice_b_outbox_stress_zero_lease_negative.json"
+      ],
+      "old_unsafe_files": [
+        "phase3_migration/raw_logs/mini_outbox_stress_reduced.json",
+        "phase3_migration/raw_logs/mini_outbox_stress_10k.json"
+      ],
+      "old_unsafe_scope": "mini_rails_only",
+      "slice_b_old_unsafe_preserved": false,
+      "workload_checks": [
+        {
+          "path": "phase3_migration/raw_logs/mini_outbox_stress_leased_reduced.json",
+          "n": 200,
+          "workers": 4,
+          "batches": [
+            1,
+            5
+          ],
+          "runs": 2,
+          "lease_seconds": 30.0,
+          "max_allowed_duplicate_attempt_percent": 0.0
+        },
+        {
+          "path": "phase3_migration/raw_logs/mini_outbox_stress_leased_10k.json",
+          "n": 10000,
+          "workers": 16,
+          "batches": [
+            1,
+            5,
+            10
+          ],
+          "runs": 3,
+          "lease_seconds": 30.0,
+          "max_allowed_duplicate_attempt_percent": 0.0
+        },
+        {
+          "path": "phase3_migration/raw_logs/slice_b_outbox_stress_leased_reduced.json",
+          "n": 200,
+          "workers": 4,
+          "batches": [
+            1,
+            5
+          ],
+          "runs": 2,
+          "lease_seconds": 30.0,
+          "max_allowed_duplicate_attempt_percent": 0.0
+        },
+        {
+          "path": "phase3_migration/raw_logs/slice_b_outbox_stress_leased_10k.json",
+          "n": 10000,
+          "workers": 16,
+          "batches": [
+            1,
+            5,
+            10
+          ],
+          "runs": 3,
+          "lease_seconds": 30.0,
+          "max_allowed_duplicate_attempt_percent": 0.0
+        },
+        {
+          "path": "phase3_migration/raw_logs/mini_outbox_stress_zero_lease_negative.json",
+          "n": 100,
+          "workers": 8,
+          "batches": [
+            5
+          ],
+          "runs": 1,
+          "lease_seconds": 0.0,
+          "max_allowed_duplicate_attempt_percent": 0.0
+        },
+        {
+          "path": "phase3_migration/raw_logs/slice_b_outbox_stress_zero_lease_negative.json",
+          "n": 100,
+          "workers": 8,
+          "batches": [
+            5
+          ],
+          "runs": 1,
+          "lease_seconds": 0.0,
+          "max_allowed_duplicate_attempt_percent": 0.0
+        },
+        {
+          "path": "phase3_migration/raw_logs/mini_outbox_stress_reduced.json",
+          "n": 200,
+          "workers": 4,
+          "batches": [
+            1,
+            5
+          ],
+          "runs": 2,
+          "lease_seconds": "absent",
+          "max_allowed_duplicate_attempt_percent": "absent"
+        },
+        {
+          "path": "phase3_migration/raw_logs/mini_outbox_stress_10k.json",
+          "n": 10000,
+          "workers": 16,
+          "batches": [
+            1,
+            5,
+            10
+          ],
+          "runs": 3,
+          "lease_seconds": "absent",
+          "max_allowed_duplicate_attempt_percent": "absent"
+        }
+      ],
+      "runner_hashes_guarded": {
+        "rails_capsule_slice_b/stress_run.rb": "e112cdb7f07e509a678013112645351eeb4d35e9e6d663be24285255b8d219e3",
+        "rails_capsule_slice_b/worker_stress.rb": "e06753280832199aac3887eab939777cb1eb7930e12c86fd0177db9978bf7066",
+        "rails_capsule_slice_b/capsule.rb": "d6e7471c590a83c925c0b051bfcc9b1c0d3f2ddfd607187f697727933390e0f2",
+        "rails_capsule_slice_b/domain.rb": "360cb46b4ec94cdfc02f6b17ca42ad75ad54c390229fbb439e23860fda80bec6",
+        "rails_capsule_slice_b/boot.rb": "abebcef2b45222d462b84f37afbd4a7802979bf5bbb2b6aea769230a6a12e419",
+        "rails_capsule_slice_b/schema.rb": "ce1b80f3749c945b116a0d3a40bb35fc0bd9584195b0e2a31fcc0019359b8d96",
+        "rails_capsule_mini_app/script/stress_dispatch.rb": "5d5e439ba680575db94d4706a949c52b25be02b1f175e8fed88d14f9302dd5f7",
+        "rails_capsule_mini_app/script/worker_stress_dispatch.rb": "b223b1628374d8f327679168ddf68990b7d9300a0733789937f53e205a38d5b0",
+        "rails_capsule_mini_app/app/services/capsule.rb": "98b0c67d8b026c266d9242a47598cd30e5561800cd4e788b589f52e0558cd4fb",
+        "rails_capsule_mini_app/app/models/outbox_event.rb": "de57cd5351219f8e75de874d851695de374182e6a43d624c58881b91d7ce7768",
+        "rails_capsule_mini_app/app/models/delivery_attempt.rb": "eae0ff73d2cada441933b7acf05c39b5e1b74e4c829f1485a4f1d279dd982187",
+        "rails_capsule_mini_app/app/models/external_charge.rb": "c0e26fb2af3fb3bf9b66808c47e150891269829a2b7dc818cdb643d08f5c4dde",
+        "rails_capsule_mini_app/db/migrate/20260613000005_create_delivery_attempts.rb": "ff702b93f25e764fbcb5261d3a81d87ae7ae901fa9578f6eac9c3e17b3769c3a",
+        "rails_capsule_mini_app/db/migrate/20260613000006_add_lease_to_outbox_events.rb": "081bf696fd5a33a238565ccc9dd94115756877c6762d06d69dd0b22ddbdb6540"
+      }
+    },
+    {
+      "name": "transaction_suite_logs",
+      "status": "pass",
+      "slice_b": {
+        "runs": 29,
+        "assertions": 143,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0
+      },
+      "mini_rails": {
+        "runs": 20,
+        "assertions": 109,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0
+      },
+      "summary_counts": {
+        "slice_b": 1,
+        "mini_rails": 1
+      },
+      "runner_hashes_guarded": {
+        "rails_capsule_slice_b/test/slice_b_test.rb": "8fec4ec688cca3a6e6115cba6fda250eb365965af0fa5ba841340f5b34472ebf",
+        "rails_capsule_slice_b/test/falsify_after_commit.rb": "1af010ebfecb29c0b23104149478b74e163c4441c52c353bb690a08d00686b83",
+        "rails_capsule_slice_b/test/falsify_crash_windows.rb": "0667069a7612dc20f0755455014b3cdf196c42d4217d823886c2a634a585da85",
+        "rails_capsule_slice_b/test/falsify_current_leakage.rb": "690109491ec420a6fc14e013ec347905014ba21200c4850b156656c0a5f8df39",
+        "rails_capsule_slice_b/test/falsify_failing_consumer.rb": "7ae9c33606cbc29598967078f2bbca895c3a6bfdc90c1d46b6fae26aa424159b",
+        "rails_capsule_slice_b/test/falsify_nokogiri_ractor.rb": "52c716eb7f49df83b348068dcb7fa495a49f062d3d8528306cd3bcb4efb43051",
+        "rails_capsule_slice_b/test/falsify_request_id_contract.rb": "933b12fb0a2a512bf0a5eb94f3f4edf83527a3353191dc9d2952bcc084e7fa9f",
+        "rails_capsule_slice_b/test/falsify_skip_locked.rb": "6fa5028eed35637a760bcfae640f30366482f4cb5dcccaa3cc8d4d188d396ca5",
+        "rails_capsule_slice_b/adversarial_service.rb": "a57d21a28bc3bfb4443bcccda637e5ad61dcc19697d7fbe89848d3ead4ffe5a1",
+        "rails_capsule_slice_b/capsule.rb": "d6e7471c590a83c925c0b051bfcc9b1c0d3f2ddfd607187f697727933390e0f2",
+        "rails_capsule_slice_b/domain.rb": "360cb46b4ec94cdfc02f6b17ca42ad75ad54c390229fbb439e23860fda80bec6",
+        "rails_capsule_slice_b/schema.rb": "ce1b80f3749c945b116a0d3a40bb35fc0bd9584195b0e2a31fcc0019359b8d96",
+        "rails_capsule_slice_b/boot.rb": "abebcef2b45222d462b84f37afbd4a7802979bf5bbb2b6aea769230a6a12e419",
+        "rails_capsule_slice_b/worker_dispatch.rb": "2a132c829fdb9b7a183532db980c541aa66a8abd8c65a3df0983b17b812acaa9",
+        "rails_capsule_slice_b/worker_commit.rb": "31888e13300ceca26be524b3f0be5db7237f9711fe3a1a9ee635e6332e2fbfa8",
+        "rails_capsule_slice_b/worker_crash.rb": "2cb69bea319fc6f632c9fe24328509c40882c322b0faad9f2ac4ada664f3db56",
+        "rails_capsule_mini_app/test/capsule_rails_test.rb": "a3fdaf2c0ffa73a0fa97b77736d4f1f6c2e7c9257a3f0bba59bf029d875c8951",
+        "rails_capsule_mini_app/app/services/adversarial_service.rb": "3a55efcfea588beb4f269cebb36f51f298920f51fd0196737338fe02f315c2c4",
+        "rails_capsule_mini_app/app/services/capsule.rb": "98b0c67d8b026c266d9242a47598cd30e5561800cd4e788b589f52e0558cd4fb",
+        "rails_capsule_mini_app/app/models/current.rb": "0f77c0e8a173f7d979782ff40a11704ca2f72806477b188d53843d0fa4a5c3be",
+        "rails_capsule_mini_app/app/models/order.rb": "65f4a06a02569b8be1e4233ba8ef056403fd01e324536e5649c79a2c442b8a05",
+        "rails_capsule_mini_app/app/models/outbox_event.rb": "de57cd5351219f8e75de874d851695de374182e6a43d624c58881b91d7ce7768",
+        "rails_capsule_mini_app/app/models/external_charge.rb": "c0e26fb2af3fb3bf9b66808c47e150891269829a2b7dc818cdb643d08f5c4dde",
+        "rails_capsule_mini_app/app/models/delivery_attempt.rb": "eae0ff73d2cada441933b7acf05c39b5e1b74e4c829f1485a4f1d279dd982187",
+        "rails_capsule_mini_app/app/models/user.rb": "9bcd67fc035c18b3b9e1460b613ac400ea0fd639bc1ab2f9c6f0805c9327255d",
+        "rails_capsule_mini_app/script/worker_dispatch.rb": "085925a20a871f2047a8b62cc99411bc419e00e056b7f711c5c12842ee9a2737",
+        "rails_capsule_mini_app/script/worker_commit.rb": "e0d10d00a19b2f6456a7d9036870fa437453ea943c730f388411909695d33e47",
+        "rails_capsule_mini_app/script/worker_crash.rb": "e3a8e05094fc6a6a6a8889df740fb5b2c2c2a69a060e3f67040ecf3116438c61",
+        "rails_capsule_mini_app/db/migrate/20260613000001_create_users.rb": "8761503fa3f0ee999728fc071b92e8da5a6e108dfa8e4bfd14f83774fe778027",
+        "rails_capsule_mini_app/db/migrate/20260613000002_create_orders.rb": "6502fe7ae3fc97b1226fe7efab88f92515411f083d32dd0c8e0294ead51bca71",
+        "rails_capsule_mini_app/db/migrate/20260613000003_create_outbox_events.rb": "8bf5e2899a88782de1c3589902327256a6dd5f463419edf45b7f466090288365",
+        "rails_capsule_mini_app/db/migrate/20260613000004_create_external_charges.rb": "9d6cd57245840ba6ccfc2130215dd369a8d7301edef5bca77953cb84cbb6e117",
+        "rails_capsule_mini_app/db/migrate/20260613000005_create_delivery_attempts.rb": "ff702b93f25e764fbcb5261d3a81d87ae7ae901fa9578f6eac9c3e17b3769c3a",
+        "rails_capsule_mini_app/db/migrate/20260613000006_add_lease_to_outbox_events.rb": "081bf696fd5a33a238565ccc9dd94115756877c6762d06d69dd0b22ddbdb6540"
+      }
+    },
+    {
+      "name": "promotion_benchmark",
+      "status": "pass",
+      "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]",
+      "bench_sha256": "acd4bd005c7c03d31092f29a79d6a4e185e4510b84863104ce70fac52977c178",
+      "payload": {
+        "fields": 21,
+        "bytes": 531
+      },
+      "throughput": {
+        "inline_full_before_decisions_s": 1755513.1896654542,
+        "owner_snapshot_build_plus_decide_decisions_s": 479139.2358527496,
+        "decide_only_snapshot_reused_decisions_s": 3123057.8466108297,
+        "decide_only_x4_ractors_decisions_s": 12872932.892455254
+      },
+      "log_matches_json": true,
+      "ratios": {
+        "owner_snapshot_build_plus_decide_vs_inline": 0.2729339993988074,
+        "decide_x4_ractors_vs_decide_only": 4.121900241593371
+      }
+    },
+    {
+      "name": "promotion_amortization",
+      "status": "pass",
+      "ns": [
+        100,
+        1000,
+        10000
+      ],
+      "classification": "compatibility_only_no_amortization",
+      "any_real_variant_amortizes": false,
+      "max_capsule_par_speedup_vs_inline": 0.20139212103950596,
+      "platform": "arm64-darwin24",
+      "runner_hashes_guarded": {
+        "phase3_migration/promotion_capsule/promotion_amortization.rb": "8a9d294361f3a6a6e0a5ec4171bbd928b11a58087d92a15d0c7fbac912186ad0",
+        "phase3_migration/promotion_capsule/capsule_eligibility.rb": "325ecdf26c2faefe027cf316d70372ece11e1d3ea374abbcb1e5674b75db7c10"
+      }
+    },
+    {
+      "name": "discourse_migration_artifacts",
+      "status": "pass",
+      "discourse_head": "36ee9d7cc8262ee2c90aedd4771ed0389122d227",
+      "promotion_fixtures": 8,
+      "promotion_fixture_cases_guarded": true,
+      "promotion_proof_ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]",
+      "promotion_proof_sha256": "374fb06dc684a8652256038c700a3f6f01d2af5d5866a1524421b92cb3a8b49c",
+      "promotion_drift_log": {
+        "semantic_lines": 2,
+        "negative_control_lines": 4,
+        "conclusion_guarded": true
+      },
+      "guardian_stale_mutations": 3,
+      "guardian_non_fit_scope": {
+        "category_counts": {
+          "discourse_global": 1,
+          "post_state": 16,
+          "topic_or_category_state": 11,
+          "recursive_guardian_predicate": 10,
+          "site_setting": 2,
+          "user_state": 3,
+          "clock_dependent": 1
+        },
+        "stale_mutations_guarded": [
+          "post.locked = true",
+          "clock advances past edit_time_limit",
+          "post.deleted_at set"
+        ]
+      },
+      "report_classification": "partial",
+      "report_partial_scope": {
+        "evidence_counts": {
+          "cache_or_redis_globals": 3,
+          "db_or_ar_live_queries": 19,
+          "i18n_reads": 7,
+          "logger_reads": 2,
+          "site_setting_reads": 4,
+          "dynamic_report_registration": 6
+        },
+        "path_metrics": {
+          "find_cached_sync_cache_reads": 1,
+          "find_live_dispatch_points": 2,
+          "req_report_query_ops": 8
+        }
+      },
+      "promotion_write_side_classification": "eligibility_only",
+      "promotion_write_side_gap": {
+        "inline_write_side_effect_count": 16,
+        "required_tokens_checked": 10,
+        "conclusion_guarded": true
+      },
+      "runner_hashes_guarded": {
+        "phase3_migration/guardian_non_fit_proof.rb": "dbf5683783720174ceb40171f38778a250574dd0c16b6f461d59c10fbceae459",
+        "phase3_migration/report_partial_proof.rb": "517a1072e4aa934260106b825fbb096c20bfd3925da11c0c5a18dfc9a0e7d3e8",
+        "phase3_migration/promotion_capsule/drift_check.rb": "53e129f8ae403b892eaa864f2537c9eecf8ce5e45c3a767b9a4da4db010a54bc",
+        "phase3_migration/promotion_write_side_gap.rb": "2248ad1225e9a09c0760f99cb0f1e27bf92fe5cb6fec2aac6279571eb0c7cf90"
+      },
+      "promotion_proof_payload": {
+        "fields": 21,
+        "bytes": 537
+      },
+      "promotion_patch": {
+        "sha256": "fe332d1c397982899b8cbe5c3d251b18319eabcf3ec1b044972df28d42c4beaa",
+        "changed_files": [
+          "lib/promotion.rb"
+        ],
+        "additions": 71,
+        "deletions": 17
+      }
+    },
+    {
+      "name": "promotion_write_side_spec",
+      "status": "pass",
+      "classification": "eligibility_only",
+      "write_side_implemented": false,
+      "inline_effect_count": 16,
+      "by_kind": {
+        "commit": 7,
+        "effect": 8,
+        "residue": 1
+      },
+      "effect_intents_required": [
+        "badge_grant",
+        "discourse_event_user_promoted",
+        "group_trust_level_change",
+        "member_welcome_message",
+        "staff_action_log",
+        "tl2_promotion_message",
+        "user_history"
+      ],
+      "runner_hashes_guarded": {
+        "phase3_migration/promotion_write_side_spec.rb": "673dd595af8f63b40bb25f0209808e7d449e9a78e1eab3113afd546a4ac3bf07"
+      }
+    },
+    {
+      "name": "lease_ratification_docs",
+      "status": "pass",
+      "decisions_fragments_checked": 9,
+      "readme_fragments_checked": 5
+    },
+    {
+      "name": "findings_mentions",
+      "status": "pass",
+      "required_mentions": [
+        "# Current evidence verdict",
+        "# Phase 3 — Audit #9: standalone Slice B outbox parity",
+        "raw_logs/environment_proof_latest.json",
+        "raw_logs/environment_proof_latest.log",
+        "raw_logs/slice_b_outbox_stress_leased_reduced.json",
+        "raw_logs/slice_b_outbox_stress_leased_10k.json",
+        "raw_logs/slice_b_outbox_stress_zero_lease_negative.json",
+        "raw_logs/slice_b_full_test_latest.log",
+        "raw_logs/mini_rails_full_test_latest.log",
+        "raw_logs/promotion_bench_latest.json",
+        "raw_logs/promotion_bench_latest.log",
+        "raw_logs/promotion_amortization_latest.json",
+        "raw_logs/promotion_write_side_spec_latest.json",
+        "# Phase 3 — Audit #10: findings evidence drift guard",
+        "raw_logs/findings_evidence_check_latest.json",
+        "raw_logs/promotion_capsule_proof_latest.json",
+        "raw_logs/promotion_drift_check_latest.json",
+        "raw_logs/drift_check_latest.log",
+        "promotion_capsule/promotion.patch",
+        "audit_output.json",
+        "# Phase 3 — Audit #11: Promotion proof false-PASS cleanup",
+        "# Phase 3 — Audit #12: Discourse evidence freshness guard",
+        "# Phase 3 — Audit #13: baseline audit dirty-tree correction",
+        "# Phase 3 — Audit #14: benchmark aggregate consistency guard",
+        "# Phase 3 — Audit #15: transaction suite log guard",
+        "# Phase 3 — Audit #16: Promotion patch freshness guard",
+        "# Phase 3 — Audit #17: Promotion benchmark evidence guard",
+        "# Phase 3 — Audit #18: environment proof guard",
+        "# Phase 3 — Audit #19: Linux benchmark runtime guard",
+        "# Phase 3 — Audit #20: current verdict guard",
+        "# Phase 3 — Audit #21: Discourse spec comparison evidence gap guard",
+        "# Phase 3 — Audit #22: local Promotion pass vs project gate guard",
+        "# Phase 3 — Audit #23: legacy positive economic probe guard",
+        "# Phase 3 — Audit #24: top-level verdict prose guard",
+        "# Phase 3 — Audit #25: Minitest log summary guard",
+        "# Phase 3 — Audit #26: outbox stress workload guard",
+        "# Phase 3 — Audit #27: outbox old-unsafe scope guard",
+        "# Phase 3 — Audit #28: Promotion proof payload byte guard",
+        "# Phase 3 — Audit #29: outbox duplicate-attempt budget guard",
+        "# Phase 3 — Audit #30: Promotion write-side gap count guard",
+        "# Phase 3 — Audit #31: Promotion write-side conclusion guard",
+        "# Phase 3 — Audit #32: Promotion benchmark Ruby runtime guard",
+        "# Phase 3 — Audit #33: Promotion proof Ruby runtime guard",
+        "# Phase 3 — Audit #34: Promotion benchmark log/JSON consistency guard",
+        "# Phase 3 — Audit #35: Promotion proof fixture identity guard",
+        "# Phase 3 — Audit #36: Promotion runner freshness guard",
+        "# Phase 3 — Audit #37: Promotion benchmark report-text guard",
+        "# Phase 3 — Audit #38: economic raw-log/JSON consistency guard",
+        "# Phase 3 — Audit #39: economic runner hash guard",
+        "# Phase 3 — Audit #40: A2 raw-log/JSON consistency guard",
+        "# Phase 3 — Audit #41: A2 runner hash guard",
+        "# Phase 3 — Audit #42: outbox stress runner hash guard",
+        "# Phase 3 — Audit #43: transaction suite log input hash guard",
+        "# Phase 3 — Audit #44: Discourse classification runner hash guard",
+        "# Phase 3 — Audit #45: environment proof runner hash guard",
+        "# Phase 3 — Audit #46: environment proof raw-log/JSON consistency guard",
+        "# Phase 3 — Audit #47: Promotion drift raw-log/JSON consistency guard",
+        "# Phase 3 — Audit #48: legacy refork probe raw-log scope guard",
+        "# Phase 3 — Audit #49: Guardian/Report classification scope guard",
+        "# Phase 3 — Audit #50: calibrated struct rerun guard",
+        "# Phase 3 — Audit #51: lease ratification documentation guard",
+        "# Phase 3 — Audit #52: Promotion amortization gate",
+        "# Phase 3 — Audit #53: Promotion write-side migration spec",
+        "# Phase 3 — Audit #54: A2.3 3D matrix axis upgrade",
+        "each transaction-suite raw log has exactly one Minitest summary",
+        "outbox stress artifacts must preserve their workload size, worker count, batches, and lease settings",
+        "old unsafe no-lease dispatcher controls are mini Rails only",
+        "Promotion proof payload bytes are now machine-guarded at 537",
+        "leased and zero-lease outbox stress artifacts must keep max_allowed_duplicate_attempt_percent=0.0",
+        "Promotion write-side gap count is now machine-guarded at 16 inline write/side-effect lines",
+        "Promotion write-side gap conclusion is now machine-guarded",
+        "Promotion benchmark Ruby runtime is now machine-guarded as Ruby 4.0.5",
+        "Promotion proof Ruby runtime is now machine-guarded as Ruby 4.0.5",
+        "Promotion benchmark raw log is now machine-checked against `promotion_bench_latest.json`",
+        "Promotion proof fixture names and expected decisions are now machine-guarded",
+        "Promotion proof and benchmark artifacts are now guarded against stale runner scripts",
+        "Promotion benchmark numbers cited in FINDINGS.md are now derived from `promotion_bench_latest.json`",
+        "Economic gate raw logs are now machine-checked against their per-ALLOC JSON artifacts",
+        "Economic gate runner inputs are now hash-pinned",
+        "A2 sync-gateway raw logs are now machine-checked against their per-cell JSON artifacts",
+        "A2 sync-gateway runner inputs are now hash-pinned",
+        "Outbox stress runner inputs are now hash-pinned",
+        "Transaction suite log inputs are now hash-pinned",
+        "Discourse classification runner inputs are now hash-pinned",
+        "Environment proof runner input is now hash-pinned",
+        "Environment proof raw log is now machine-checked against `environment_proof_latest.json`",
+        "Promotion drift raw log is now machine-checked against `promotion_drift_check_latest.json`",
+        "Legacy refork probe raw logs are now scope-guarded",
+        "Guardian and Report classification scopes are now machine-guarded",
+        "Calibrated struct rerun artifacts are now machine-guarded",
+        "Lease ratification docs are now machine-guarded",
+        "Historical Discourse `spec/lib/promotion_spec.rb` before/after output is **not current machine-guarded evidence**",
+        "The current guarded evidence for Promotion is proof/drift/patch/benchmark/write-gap",
+        "Local Promotion-eligibility migration blockers are not hit",
+        "This is **not** a project-level continuation gate",
+        "Legacy positive economic probes are context only, not continuation evidence",
+        "Only `economic_gate_results.json`, `economic_gate_struct_matrix_results.json`, and the calibrated struct rerun artifacts"
+      ],
+      "forbidden_current_claims_absent": true,
+      "forbidden_current_claims_checked": 3
+    },
+    {
+      "name": "findings_current_verdict_text",
+      "status": "pass",
+      "required_bearish_claims": [
+        "Verdict atual: **PIVOT / continue only as narrow P&D**, not product/runtime/platform.",
+        "remains `eligibility_only`; the write side still does not implement `Proposal + EffectIntent + outbox` in Discourse.",
+        "Economic gate: current reduced Linux matrices have **no surviving allocs**",
+        "The calibrated `struct` re-run is now guarded separately: ALLOC=100 fails the memory floor;",
+        "A2 sync gateway: 3D SCAN×ALLOC×CAP_EVERY matrix (72 cells) — chatty bounded-sync (CAP_EVERY=1) fails at every SCAN/ALLOC",
+        "Promotion benchmark: owner snapshot build + decide is slower than inline",
+        "Do not advance to gem/DSL/product."
+      ],
+      "forbidden_verdict_claims_absent": true
+    },
+    {
+      "name": "findings_promotion_benchmark_text",
+      "status": "pass",
+      "inline_full": "1.76M",
+      "owner_snapshot_build_plus_decide": "479K",
+      "owner_ratio": "0.27",
+      "decide_only": "3.12M",
+      "decide_x4_ractors": "12.87M",
+      "x4_ratio": "4.12"
+    },
+    {
+      "name": "strong_host_gate_v2_reduced",
+      "status": "pass",
+      "runner_hash_guarded": {
+        "strong_host_gate_v2.rb": "e2efbe21be060d6fd491867074bf7ea9233746af5ab5590a12bb0e83121fc853"
+      },
+      "runner_sha256_in_artifact_matches_pin": true,
+      "run_class": "reduced",
+      "full_host_gate_run": false,
+      "full_host_artifact_absent": true,
+      "config_asserted": {
+        "shapes": [
+          "hash"
+        ],
+        "targets_mb": [
+          200.0
+        ],
+        "allocs": [
+          0,
+          100
+        ],
+        "workers": [
+          1,
+          2,
+          4
+        ],
+        "reps": 3,
+        "duration_s": 3.0
+      },
+      "cells": 42,
+      "models_asserted": [
+        "process_naive",
+        "process_gc_compact",
+        "process_warmup",
+        "process_gc_compact_plus_warmup",
+        "process_prefork_warmed",
+        "process_refork",
+        "ractor_frozen_image"
+      ],
+      "per_cell_files_cross_checked": 42,
+      "verdict_arithmetic_tied_to_cells": true,
+      "raw_log_json_consistency_checked": true,
+      "alloc0_control_status": "pivot",
+      "alloc100_status": "survives",
+      "alloc100_gate_states": {
+        "ratio": "pass",
+        "saving": "pass",
+        "reach": "pass"
+      },
+      "alloc100_win_is_single_operating_point": true,
+      "alloc100_ractor_wins_at_workers": [
+        4
+      ],
+      "alloc100_ractor_median_wins_at_workers": [
+        4
+      ],
+      "alloc100_strongest_baseline": "process_gc_compact_plus_warmup",
+      "alloc100_adversarial_baseline": "process_gc_compact_plus_warmup",
+      "alloc100_pss_ratio_percent": 50.8,
+      "alloc100_absolute_saving_mb": 263.3,
+      "alloc100_throughput_reach_percent": 94.4
+    },
+    {
+      "name": "strong_host_gate_v2_full",
+      "status": "pass",
+      "full_artifact_present": false,
+      "recompute_engine_self_test": "pass",
+      "note": "no completed full-host run yet (BLOCKED_BY_HOST_LINUX); recompute engine validated against reduced; economic_final_gate stays false"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "generated_at_utc": "2026-06-14T11:54:46Z",
+  "n": 100,
+  "workers": 8,
+  "batches": [
+    5
+  ],
+  "runs_per_batch": 1,
+  "jitter_ms": 10.0,
+  "lease_seconds": 0.0,
+  "max_allowed_duplicate_attempt_percent": 0.0,
+  "all_ok": false,
+  "max_duplicate_attempt_percent": 149.0,
+  "runs": [
+    {
+      "batch": 5,
+      "run": 0,
+      "workers": 8,
+      "n": 100,
+      "jitter_ms": 10.0,
+      "lease_seconds": 0.0,
+      "max_allowed_duplicate_attempt_percent": 0.0,
+      "exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "unpublished": 0,
+      "charges": 100,
+      "distinct_charges": 100,
+      "duplicate_effect_keys": 0,
+      "attempts": 249,
+      "duplicate_attempts": 149,
+      "duplicate_attempt_percent": 149.0,
+      "elapsed_s": 2.594,
+      "ok": false
+    }
+  ]
+}

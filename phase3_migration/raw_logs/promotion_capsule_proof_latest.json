@@ -1,0 +1,73 @@
+{
+  "generated_at_utc": "2026-06-14T13:14:22Z",
+  "status": "pass",
+  "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]",
+  "proof_sha256": "374fb06dc684a8652256038c700a3f6f01d2af5d5866a1524421b92cb3a8b49c",
+  "capsule_sha256": "325ecdf26c2faefe027cf316d70372ece11e1d3ea374abbcb1e5674b75db7c10",
+  "fixture_count": 8,
+  "ractor_off_main": true,
+  "snapshot_shareable": true,
+  "payload_fields": 21,
+  "payload_bytes": 537,
+  "forbidden_global_leaks": [],
+  "mismatch_count": 0,
+  "fixture_results": [
+    {
+      "name": "tl0 did nothing -> nil",
+      "reference": null,
+      "capsule": null,
+      "ractor_off_main": true,
+      "snapshot_shareable": true
+    },
+    {
+      "name": "tl0 meets tl1, old account -> 1",
+      "reference": 1,
+      "capsule": 1,
+      "ractor_off_main": true,
+      "snapshot_shareable": true
+    },
+    {
+      "name": "tl0 meets tl1 stats but account 1min old -> nil (age gate)",
+      "reference": null,
+      "capsule": null,
+      "ractor_off_main": true,
+      "snapshot_shareable": true
+    },
+    {
+      "name": "tl0 manual_locked -> nil",
+      "reference": null,
+      "capsule": null,
+      "ractor_off_main": true,
+      "snapshot_shareable": true
+    },
+    {
+      "name": "tl1 meets tl2 -> 2",
+      "reference": 2,
+      "capsule": 2,
+      "ractor_off_main": true,
+      "snapshot_shareable": true
+    },
+    {
+      "name": "tl1 short on likes_given -> nil",
+      "reference": null,
+      "capsule": null,
+      "ractor_off_main": true,
+      "snapshot_shareable": true
+    },
+    {
+      "name": "tl1 short on topic_reply_count (residue field) -> nil",
+      "reference": null,
+      "capsule": null,
+      "ractor_off_main": true,
+      "snapshot_shareable": true
+    },
+    {
+      "name": "tl2 already -> nil (deferred upstream)",
+      "reference": null,
+      "capsule": null,
+      "ractor_off_main": true,
+      "snapshot_shareable": true
+    }
+  ],
+  "mismatches": []
+}

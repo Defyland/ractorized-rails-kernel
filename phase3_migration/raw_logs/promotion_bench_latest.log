@@ -1,0 +1,9 @@
+inline full (BEFORE, per call)        :   1755513 decisions/s
+owner snapshot build + decide (AFTER) :    479139 decisions/s  (0.27x vs before — the per-call migration cost)
+decide only, snapshot reused          :   3123058 decisions/s  (the PURE part that runs in the Ractor)
+decide only x4 Ractors                :  12872933 decisions/s  (4.12x vs 1 — parallelism applies ONLY to the pure decide)
+snapshot payload: 21 fields, 531 bytes
+HONEST READ: the migration's real per-call cost is the OWNER snapshot build (0.27x the inline cost,
+and UNDER-counted here because calc_topic_reply_count! is a real DB query in production). The 4.1x
+parallel speedup is on the PURE decide only — you still pay the owner build per call. Not an end-to-end win by itself.
+JSON written: phase3_migration/raw_logs/promotion_bench_latest.json

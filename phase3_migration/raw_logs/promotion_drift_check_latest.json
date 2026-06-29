@@ -1,0 +1,43 @@
+{
+  "generated_at_utc": "2026-06-14T12:05:47Z",
+  "status": "pass",
+  "discourse_head": "36ee9d7cc8262ee2c90aedd4771ed0389122d227",
+  "discourse_source_ref": "HEAD:lib/promotion.rb",
+  "real_source_sha256": "307e72215f8cec3465f53d511fc9544f06dc026cc193fad6baa6a784d19ffe20",
+  "capsule_sha256": "325ecdf26c2faefe027cf316d70372ece11e1d3ea374abbcb1e5674b75db7c10",
+  "semantic_matches": [
+    {
+      "level": 1,
+      "real_guard_count": 4,
+      "capsule_guard_count": 4,
+      "match": true,
+      "differences": []
+    },
+    {
+      "level": 2,
+      "real_guard_count": 8,
+      "capsule_guard_count": 8,
+      "match": true,
+      "differences": []
+    }
+  ],
+  "negative_controls": [
+    {
+      "name": "operator mutation fails",
+      "detected": true
+    },
+    {
+      "name": "field mutation fails",
+      "detected": true
+    },
+    {
+      "name": "removed guard fails",
+      "detected": true
+    },
+    {
+      "name": "order mutation fails",
+      "detected": true
+    }
+  ],
+  "static_only": true
+}

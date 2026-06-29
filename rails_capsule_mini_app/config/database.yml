@@ -1,0 +1,48 @@
+# Real PostgreSQL 16, running in a Docker container, reachable from the host at
+# 127.0.0.1:65432 (user/password "capsule"). The two databases already exist:
+#   capsule_railsapp       (development)
+#   capsule_railsapp_test  (test)
+#
+# IMPORTANT: host is the literal 127.0.0.1, NOT a name with an underscore.
+# Rails' URL parsing (uri gem) rejects underscore hostnames; using the IP avoids that entirely.
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  <% unless ENV["DATABASE_URL"] || ENV["TEST_DATABASE_URL"] %>
+  host: 127.0.0.1
+  port: 65432
+  username: capsule
+  password: capsule
+  <% end %>
+  # For details on connection pooling, see the Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
+
+development:
+  <<: *default
+  <% if ENV["DATABASE_URL"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  <% else %>
+  database: capsule_railsapp
+  <% end %>
+
+# The test database. Each concurrent dispatcher/committer worker process this slice
+# spawns opens its own libpq connection here (spawned, never forked — libpq is not
+# fork-safe on macOS).
+test:
+  <<: *default
+  <% if ENV["TEST_DATABASE_URL"] %>
+  url: <%= ENV["TEST_DATABASE_URL"] %>
+  <% elsif ENV["DATABASE_URL"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  <% else %>
+  database: capsule_railsapp_test
+  <% end %>
+
+production:
+  <<: *default
+  <% if ENV["DATABASE_URL"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  <% else %>
+  database: capsule_railsapp
+  <% end %>

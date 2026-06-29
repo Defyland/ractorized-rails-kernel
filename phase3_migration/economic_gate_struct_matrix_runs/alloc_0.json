@@ -1,0 +1,160 @@
+{
+  "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [aarch64-linux]",
+  "platform": "aarch64-linux",
+  "generated_at_utc": "2026-06-14T11:08:28Z",
+  "config": {
+    "pools": [
+      1,
+      2
+    ],
+    "shapes": [
+      "struct"
+    ],
+    "n_rules": 1000000,
+    "n_rules_by_shape": {
+      "struct": 1500000
+    },
+    "items": 500,
+    "scan": 500,
+    "alloc": 0,
+    "duration_s": 2.0,
+    "refork_every_s": 1.0,
+    "passes_per_gen": 1,
+    "reps": 2
+  },
+  "gates": {
+    "pss_ratio_max": 0.8,
+    "absolute_saving_mb_min": 100,
+    "throughput_reach_min": 0.75
+  },
+  "shapes": [
+    {
+      "shape": "struct",
+      "n_rules": 1500000,
+      "oracle": 75875132.82,
+      "frontier": {
+        "ractor": [
+          {
+            "pool": 1,
+            "throughput_items_s": 16872.126246538828,
+            "throughput_min_items_s": 16700.461687703697,
+            "throughput_max_items_s": 17043.79080537396,
+            "pss_kb": 165882.0,
+            "pss_mb": 162.0,
+            "correct": true,
+            "gc_count": 0.0,
+            "gc_time_ms": 0.0,
+            "allocated_objects": 697.0,
+            "gens": 1.0,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 32134.37994743396,
+            "throughput_min_items_s": 27522.103893005868,
+            "throughput_max_items_s": 36746.65600186205,
+            "pss_kb": 165448.0,
+            "pss_mb": 161.6,
+            "correct": true,
+            "gc_count": 0.0,
+            "gc_time_ms": 0.0,
+            "allocated_objects": 732.0,
+            "gens": 1.0,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "norefork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 17538.67208358225,
+            "throughput_min_items_s": 17467.74591664565,
+            "throughput_max_items_s": 17609.59825051885,
+            "pss_kb": 94467.0,
+            "pss_mb": 92.3,
+            "correct": true,
+            "gc_count": 0.0,
+            "gc_time_ms": 0.0,
+            "allocated_objects": 12.0,
+            "gens": 1.0,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 31315.867136907633,
+            "throughput_min_items_s": 28690.711285435693,
+            "throughput_max_items_s": 33941.02298837958,
+            "pss_kb": 95816.5,
+            "pss_mb": 93.6,
+            "correct": true,
+            "gc_count": 0.0,
+            "gc_time_ms": 0.0,
+            "allocated_objects": 24.0,
+            "gens": 1.0,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "refork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 17508.50251963816,
+            "throughput_min_items_s": 17330.26347942605,
+            "throughput_max_items_s": 17686.741559850274,
+            "pss_kb": 94513.0,
+            "pss_mb": 92.3,
+            "correct": true,
+            "gc_count": 0.0,
+            "gc_time_ms": 0.0,
+            "allocated_objects": 24.0,
+            "gens": 2.0,
+            "refork_interval_p50_s": 1.0205329919999713,
+            "refork_interval_p95_s": 1.029339352000079
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 34220.27863742749,
+            "throughput_min_items_s": 33999.56875290722,
+            "throughput_max_items_s": 34440.988521947766,
+            "pss_kb": 95950.5,
+            "pss_mb": 93.7,
+            "correct": true,
+            "gc_count": 0.0,
+            "gc_time_ms": 0.0,
+            "allocated_objects": 48.0,
+            "gens": 2.0,
+            "refork_interval_p50_s": 1.017609893000099,
+            "refork_interval_p95_s": 1.0191468969999278
+          }
+        ]
+      },
+      "verdict": {
+        "status": "kill",
+        "reason": "refork Pareto-dominates Ractor",
+        "ractor_best": {
+          "pool": 2,
+          "throughput_items_s": 32134.37994743396,
+          "pss_kb": 165448.0,
+          "pss_mb": 161.6
+        },
+        "refork_iso_pss_kb": 95771.07685875328,
+        "refork_iso_pss_mb": 93.5,
+        "norefork_iso_pss_kb": 95816.5,
+        "norefork_iso_pss_mb": 93.6,
+        "refork_max_throughput_items_s": 34220.27863742749,
+        "refork_interval_p50_s": 1.0190718650000008,
+        "refork_interval_p95_s": 1.029339352000079,
+        "pss_ratio": 1.7275361771697402,
+        "pss_ratio_percent": 172.8,
+        "throughput_reach": 0.9390449530790164,
+        "throughput_reach_percent": 93.9,
+        "throughput_reach_min": 0.7991089998902677,
+        "throughput_reach_max": 1.0807977086097582,
+        "absolute_saving_mb": -68.0,
+        "material_saving": false
+      }
+    }
+  ]
+}

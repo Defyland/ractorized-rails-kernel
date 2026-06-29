@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+MINI_APP_TEST_DATABASE_URL="${MINI_APP_TEST_DATABASE_URL:-postgres:///capsule_railsapp_test}"
+SLICE_B_DATABASE_URL="${SLICE_B_DATABASE_URL:-postgres:///capsule_test}"
+
+ensure_local_socket_database() {
+  local url="$1"
+
+  case "$url" in
+    postgres:///*)
+      createdb "${url#postgres:///}" >/dev/null 2>&1 || true
+      ;;
+  esac
+}
+
+ensure_local_socket_database "$MINI_APP_TEST_DATABASE_URL"
+ensure_local_socket_database "$SLICE_B_DATABASE_URL"
+
+bundle exec ruby day1_smoke_test.rb
+
+(
+  cd rails_capsule_mini_app
+  RAILS_ENV=test TEST_DATABASE_URL="$MINI_APP_TEST_DATABASE_URL" bundle exec bin/rails db:prepare
+  RAILS_ENV=test TEST_DATABASE_URL="$MINI_APP_TEST_DATABASE_URL" bundle exec ruby test/capsule_rails_test.rb
+)
+
+(
+  cd rails_capsule_slice_b
+  DATABASE_URL="$SLICE_B_DATABASE_URL" ./run.sh
+)

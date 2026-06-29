@@ -1,0 +1,9 @@
+tl1_met?  (4 guards, real) vs (4 guards, capsule) => SEMANTIC MATCH
+tl2_met?  (8 guards, real) vs (8 guards, capsule) => SEMANTIC MATCH
+negative: operator mutation fails => RED as expected
+negative: field mutation fails => RED as expected
+negative: removed guard fails => RED as expected
+negative: order mutation fails => RED as expected
+
+DRIFT CHECK OK — every guard's (field, operator, threshold) and order match real lib/promotion.rb@36ee9d7c.
+Mutation controls are red. Static check only; runtime characterization vs a booted Discourse remains stronger.

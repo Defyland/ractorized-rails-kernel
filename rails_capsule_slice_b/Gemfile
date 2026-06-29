@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+# Phase 2 — Rails Real Integration Slice.
+# Standalone ActiveRecord + ActiveSupport (the REAL Rails persistence stack) against a
+# REAL Postgres. No actionpack/railties/HTTP layer: every Phase-2 gate is a DB/AR-layer
+# property (transaction, lock_version optimistic locking, unique index, after_commit,
+# concurrent connections) — the web tier would add Ruby-4.0 boot risk and test nothing here.
+# This deviation from a full `rails new` is documented in ../docs/decisions.md (Phase 2).
+
+source "https://rubygems.org"
+
+gem "activerecord", "~> 8.0"
+gem "activesupport", "~> 8.0"
+gem "pg", "~> 1.5"      # pg >= 1.5 is Ractor-safe (verified in Phase 1); here we use it on the owner thread
+gem "minitest", "~> 5.20"
+
+gem "nokogiri", "~> 1.19"

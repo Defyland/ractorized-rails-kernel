@@ -1,0 +1,11 @@
+Run options: --seed 57740
+
+# Running:
+
+....OBSERVED_WRAPPER_EXCEPTION=Ractor::RemoteError
+OBSERVED_NON_MAIN_RACTOR_EXCEPTION=Ractor::UnsafeError
+.........................
+
+Finished in 14.814181s, 1.9576 runs/s, 9.6529 assertions/s.
+
+29 runs, 143 assertions, 0 failures, 0 errors, 0 skips

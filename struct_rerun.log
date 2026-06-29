@@ -1,0 +1,91 @@
+#### struct ALLOC=100 (N=5M REPS=6 DUR=8 wall1s) ####
+Ruby 4.0.5 (aarch64-linux) refork death-test (frontier / iso-throughput)
+POOLS=[1, 2, 4] SHAPES=[:struct] N_by_shape={struct: 5000000} ITEMS=2000 SCAN=1500 ALLOC=100 DURATION=8.0s REPS=6 refork-cadence=wall-clock 1.0s/gen
+
+==================== shape: struct (N=5000000) ====================
+model                   pool    items/s  tput[min..max]   PSS_MB    GC_cnt   alloc_objs      ok
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+ractor                     1       5163      4906..5374  634.9MB         2      8402203     yes
+norefork                   1       5056      4379..5260  582.3MB         2      8400015     yes
+refork                     1       4641      3957..5011  403.9MB         0      8200105     yes
+                              ↳ actual refork interval p50=1.263s p95=1.471s (7 gens, target 1.0s); smaps artifact excl. from tput 0.44% of wall
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+ractor                     2       9990     9438..10174  634.6MB         4     16202238     yes
+norefork                   2       9372     7868..10126  882.2MB         4     15300030     yes
+refork                     2       9222      8823..9985  495.3MB         0     15800240     yes
+                              ↳ actual refork interval p50=1.119s p95=1.210s (8 gens, target 1.0s); smaps artifact excl. from tput 0.68% of wall
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+ractor                     4      18026    17091..19150  634.6MB         9     29102292     yes
+norefork                   4      19174    17825..20216 1489.3MB         8     31100060     yes
+refork                     4      18074    16023..18762  689.2MB         0     31700480     yes
+                              ↳ actual refork interval p50=1.116s p95=1.138s (8 gens, target 1.0s); smaps artifact excl. from tput 1.23% of wall
+
+  verdict (struct, N=5000000, ALLOC=100, refork wall 1.0s/gen; actual interval p50=1.131s p95=1.346s):
+    ractor best:        18026 items/s @ pool 4, PSS 634.6MB
+    refork  @ iso-tput: PSS 688.1MB   |   no-refork @ iso-tput: PSS 1418.2MB
+    Ractor PSS / refork PSS = 92.2% (gate ≤80%) ; absolute saving 53.6MB (gate ≥100MB ABSOLUTE)
+    throughput reach vs refork max = 99.7% (gate ≥75%)
+    → TRADEOFF (neither Pareto-dominates): Ractor throughput 100% of refork-max, Ractor PSS 92% of refork. Memory gate (≤80% AND ≥100MB): fail; throughput gate (≥75%): pass → OVERALL FAIL.
+
+JSON written: /app/struct_rerun_a100.json
+#### struct ALLOC=500 ####
+Ruby 4.0.5 (aarch64-linux) refork death-test (frontier / iso-throughput)
+POOLS=[1, 2, 4] SHAPES=[:struct] N_by_shape={struct: 5000000} ITEMS=2000 SCAN=1500 ALLOC=500 DURATION=8.0s REPS=6 refork-cadence=wall-clock 1.0s/gen
+
+==================== shape: struct (N=5000000) ====================
+model                   pool    items/s  tput[min..max]   PSS_MB    GC_cnt   alloc_objs      ok
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+ractor                     1       3969      3815..4048  634.9MB         9     32002203     yes
+norefork                   1       3990      3535..4045  582.3MB        11     34000015     yes
+refork                     1       3487      3015..3537  584.3MB         7     30000112     yes
+                              ↳ actual refork interval p50=1.146s p95=1.337s (8 gens, target 1.0s); smaps artifact excl. from tput 0.59% of wall
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+ractor                     2       6838      6174..7114  634.5MB        17     56002244     yes
+norefork                   2       7263      5610..7790  882.1MB        19     59000030     yes
+refork                     2       6486      3368..6643  865.0MB        14     56000210     yes
+                              ↳ actual refork interval p50=1.229s p95=1.826s (7 gens, target 1.0s); smaps artifact excl. from tput 0.91% of wall
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:221: warning: Ractor API is experimental and may change in future versions of Ruby.
+ractor                     4      10551     9261..10875  634.5MB        26     86502298     yes
+norefork                   4      10700     8908..12499 1482.7MB        27     87750060     yes
+refork                     4       9587     7130..11309 1162.2MB        24     80750420     yes
+                              ↳ actual refork interval p50=1.192s p95=1.601s (7 gens, target 1.0s); smaps artifact excl. from tput 1.74% of wall
+
+  verdict (struct, N=5000000, ALLOC=500, refork wall 1.0s/gen; actual interval p50=1.192s p95=1.406s):
+    ractor best:        10551 items/s @ pool 4, PSS 634.5MB
+    refork  @ iso-tput: PSS 1162.2MB   |   no-refork @ iso-tput: PSS 1456.8MB
+    Ractor PSS / refork PSS = 54.6% (gate ≤80%) ; absolute saving 527.8MB (gate ≥100MB ABSOLUTE)
+    throughput reach vs refork max = 110.1% (gate ≥75%)
+    → Ractor SURVIVES — Pareto-dominates refork (≤PSS AND ≥throughput) with a MATERIAL 527.8MB saving.
+
+JSON written: /app/struct_rerun_a500.json
+EXIT=0

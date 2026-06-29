@@ -1,0 +1,19 @@
+Ruby 4.0.5 (aarch64-linux) A2.3 bounded-SYNC cache read (end-to-end round-trip)
+N_RULES=80000 ITEMS=300 SCAN=1500 DURATION=1.0s ALLOC=500 POOL=4 CAP_EVERY=1 CACHE_SZ=1000 REPS=2
+
+model                         items/s  tput[min..max]   rt_p50   rt_p95   rt_p99  correct
+ractor no-cache                 14733    14567..14899  0.000ms  0.000ms  0.000ms      yes
+ractor SYNC cache (gw)          13240    13231..13250  0.016ms  0.068ms  0.361ms       NO
+process direct cache            17515    16834..18195  0.000ms  0.001ms  0.002ms      yes
+
+  A2.3 verdict (sync cache read every 1 item):
+    sync-gateway tax (ractor cache vs no-cache): +10.1% [9.0..11.2]  (gate ≤10-15%)
+    ractor(sync cache) throughput vs process:    75.6% [72.7..78.7]  (gate ≥75%)
+    round-trip latency: p50 0.016ms / p95 0.068ms / p99 0.361ms ; timeouts 25618 ; stale replies dropped 25610
+    → A2.3: FAIL — 25618 timeouts, 25610 stale dropped, correct=false (stale/missing reads); forbid chatty sync deps in capsules
+
+JSON written: phase3_migration/a2_sync_matrix_runs/scan1500_alloc500_cap1_to1p0em06.json
+a2_cache_sync.rb:113: warning: Ractor API is experimental and may change in future versions of Ruby.
+a2_cache_sync.rb:113: warning: Ractor API is experimental and may change in future versions of Ruby.
+a2_cache_sync.rb:113: warning: Ractor API is experimental and may change in future versions of Ruby.
+a2_cache_sync.rb:113: warning: Ractor API is experimental and may change in future versions of Ruby.

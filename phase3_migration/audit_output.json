@@ -1,0 +1,281 @@
+{
+  "generated_against_commit": "36ee9d7cc8262ee2c90aedd4771ed0389122d227",
+  "source_ref": "HEAD",
+  "source_mode": "git_show+git_ls_tree",
+  "discourse_path": "/Users/allanflavio/Documents/projects/PERSONAL/backend-challenges/ractorized-rails-kernel/phase3_migration/discourse",
+  "services": {
+    "guardian": {
+      "files": [
+        "lib/guardian.rb",
+        "lib/guardian/bookmark_guardian.rb",
+        "lib/guardian/category_guardian.rb",
+        "lib/guardian/ensure_magic.rb",
+        "lib/guardian/flag_guardian.rb",
+        "lib/guardian/group_guardian.rb",
+        "lib/guardian/invite_guardian.rb",
+        "lib/guardian/localization_guardian.rb",
+        "lib/guardian/permalink_guardian.rb",
+        "lib/guardian/post_guardian.rb",
+        "lib/guardian/post_revision_guardian.rb",
+        "lib/guardian/sidebar_guardian.rb",
+        "lib/guardian/staff_action_log_guardian.rb",
+        "lib/guardian/tag_guardian.rb",
+        "lib/guardian/topic_guardian.rb",
+        "lib/guardian/upload_guardian.rb",
+        "lib/guardian/user_guardian.rb"
+      ],
+      "source_sha256_by_file": {
+        "lib/guardian.rb": "0fc71f5370f9e574cc639bcf6937385a40d7c238f2fe35c6a2409e52072009c1",
+        "lib/guardian/bookmark_guardian.rb": "d95386bcb6c41e105245d32d665aacb079725f8ae9214b8e6ced05b7410a323a",
+        "lib/guardian/category_guardian.rb": "c0c26c5db676e5ed701a1cac8db495e6b461489e6c1ba2dd3e18b9fad31d5c08",
+        "lib/guardian/ensure_magic.rb": "8146e75758efaf6539d6075286ab3a6e19aa8e4bdce6c606b42ce34ee5ef45f9",
+        "lib/guardian/flag_guardian.rb": "95b4f30091ea1d5842d3b8015b8ec4e1b290bd8890e654f01fe79d25efb178de",
+        "lib/guardian/group_guardian.rb": "47708b48745140b7380e2b75471af42a9410d2759670c0161bc14ae38f853df6",
+        "lib/guardian/invite_guardian.rb": "76345f7a8e089b5eae742ed3bf15e3dbb0351c153695f88028fd72e478e42ca8",
+        "lib/guardian/localization_guardian.rb": "f3e917c6d180c89afeb4ed694b0c302c0bdd738ec72b31f3708cb2bccf6e7590",
+        "lib/guardian/permalink_guardian.rb": "b5f0505120b9f88a569ef1fc3997e2de32ec78b14bd4b0c0797df259cdbedb55",
+        "lib/guardian/post_guardian.rb": "35752fd7383ee373b6f1b023ad9d441fa562d6fda9a26ba31b602fe505690da1",
+        "lib/guardian/post_revision_guardian.rb": "02d62a06412384f0eca9908045036de8adc29455b47cc1c24125f2ee0881b809",
+        "lib/guardian/sidebar_guardian.rb": "b61c357e0a5f4ec29f8c4abedfb099d22306e244904caaf55466d4e35498afec",
+        "lib/guardian/staff_action_log_guardian.rb": "f8ab3211166c3107766adf3227abda215feaabc5a31c98bc5d87bdb4d528d783",
+        "lib/guardian/tag_guardian.rb": "d46cb0dd66d8e29613527689b0e91f89df8bdbe8c6f29947d53182faa5f6063e",
+        "lib/guardian/topic_guardian.rb": "10df259510e87d62af0e8f894967089d9f0d1d23ec2ff90be1c2c965fb629aa8",
+        "lib/guardian/upload_guardian.rb": "c377023a0a260f0f509e1644b339a643422815bbb9f823a700cbce235c5f6f15",
+        "lib/guardian/user_guardian.rb": "b7363111877ea3aa74eba52e7bf57941e9040ade4791f7006f9c273b8ed95ae4"
+      },
+      "loc": 2267,
+      "call_site_files": 179,
+      "call_site_occurrences": 668,
+      "call_sites": 668,
+      "site_setting_reads": 138,
+      "rails_cache_reads": 0,
+      "rails_logger_reads": 0,
+      "redis_reads": 0,
+      "metrics_reads": 0,
+      "i18n_reads": 0,
+      "current_reads": 4,
+      "discourse_globals": 0,
+      "rails_globals": 0,
+      "ar_queries": 47,
+      "db_queries": 0,
+      "db_query": 0,
+      "callbacks_or_procs": 1,
+      "native_ext_touches": 0,
+      "held_ar_state_refs": 113,
+      "held_user_refs": 113,
+      "side_effect_calls": [],
+      "def_methods": 272,
+      "can_is_predicates": 224,
+      "blocks_procs": 1,
+      "candidate": "non_fit",
+      "reasons": [
+        "large call-site surface",
+        "held mutable @user/@state references",
+        "live AR/DB reads",
+        "SiteSetting global reads",
+        "callbacks/procs/dynamic blocks"
+      ]
+    },
+    "report": {
+      "files": [
+        "app/models/report.rb"
+      ],
+      "source_sha256_by_file": {
+        "app/models/report.rb": "5a1c29551abd7ae31b121953d70e8416496c8aaf378014877a8fcbcd629fbe7c"
+      },
+      "loc": 611,
+      "call_site_files": 16,
+      "call_site_occurrences": 33,
+      "call_sites": 33,
+      "site_setting_reads": 4,
+      "rails_cache_reads": 4,
+      "rails_logger_reads": 2,
+      "redis_reads": 1,
+      "metrics_reads": 0,
+      "i18n_reads": 7,
+      "current_reads": 8,
+      "discourse_globals": 4,
+      "rails_globals": 2,
+      "ar_queries": 14,
+      "db_queries": 2,
+      "db_query": 2,
+      "callbacks_or_procs": 3,
+      "native_ext_touches": 0,
+      "held_ar_state_refs": 0,
+      "held_user_refs": 0,
+      "side_effect_calls": [],
+      "def_methods": 34,
+      "can_is_predicates": 0,
+      "blocks_procs": 0,
+      "candidate": "partial",
+      "reasons": [
+        "live AR/DB reads",
+        "Rails/Discourse cache or Redis global",
+        "SiteSetting global reads",
+        "callbacks/procs/dynamic blocks"
+      ]
+    },
+    "promotion": {
+      "files": [
+        "lib/promotion.rb"
+      ],
+      "source_sha256_by_file": {
+        "lib/promotion.rb": "307e72215f8cec3465f53d511fc9544f06dc026cc193fad6baa6a784d19ffe20"
+      },
+      "loc": 176,
+      "call_site_files": 7,
+      "call_site_occurrences": 8,
+      "call_sites": 8,
+      "site_setting_reads": 12,
+      "rails_cache_reads": 0,
+      "rails_logger_reads": 0,
+      "redis_reads": 0,
+      "metrics_reads": 0,
+      "i18n_reads": 1,
+      "current_reads": 0,
+      "discourse_globals": 1,
+      "rails_globals": 0,
+      "ar_queries": 2,
+      "db_queries": 0,
+      "db_query": 0,
+      "callbacks_or_procs": 0,
+      "native_ext_touches": 0,
+      "held_ar_state_refs": 29,
+      "held_user_refs": 29,
+      "side_effect_calls": [
+        "StaffActionLogger.new(admin).log_trust_level_change(@user, old_level, new_level)",
+        "UserHistory.create!(",
+        "DiscourseEvent.trigger(",
+        "Group.user_trust_level_change!(@user.id, @user.trust_level)",
+        "BadgeGranter.queue_badge_grant(Badge::Trigger::TrustLevelChange, user: @user)",
+        "user.update_column(:trust_level, TrustLevel[granted_trust_level])",
+        "Group.user_trust_level_change!(user.id, user.trust_level)"
+      ],
+      "def_methods": 12,
+      "can_is_predicates": 0,
+      "blocks_procs": 0,
+      "candidate": "partial",
+      "reasons": [
+        "held mutable @user/@state references",
+        "live AR/DB reads",
+        "SiteSetting global reads",
+        "side-effect calls in service body"
+      ]
+    },
+    "candidate_validations": {
+      "files": [
+        "lib/site_settings/validations.rb"
+      ],
+      "source_sha256_by_file": {
+        "lib/site_settings/validations.rb": "a70b4e2c9b98679557214eeff3a24e1b252a0cdc6a4763ef5956ab858bd7d9d5"
+      },
+      "loc": 304,
+      "call_site_files": 39,
+      "call_site_occurrences": 100,
+      "call_sites": 100,
+      "site_setting_reads": 50,
+      "rails_cache_reads": 0,
+      "rails_logger_reads": 0,
+      "redis_reads": 0,
+      "metrics_reads": 0,
+      "i18n_reads": 2,
+      "current_reads": 0,
+      "discourse_globals": 0,
+      "rails_globals": 0,
+      "ar_queries": 2,
+      "db_queries": 0,
+      "db_query": 0,
+      "callbacks_or_procs": 0,
+      "native_ext_touches": 0,
+      "held_ar_state_refs": 0,
+      "held_user_refs": 0,
+      "side_effect_calls": [],
+      "def_methods": 30,
+      "can_is_predicates": 0,
+      "blocks_procs": 0,
+      "candidate": "partial",
+      "reasons": [
+        "live AR/DB reads",
+        "SiteSetting global reads"
+      ]
+    },
+    "candidate_site_setting": {
+      "files": [
+        "app/models/site_setting.rb"
+      ],
+      "source_sha256_by_file": {
+        "app/models/site_setting.rb": "21a9d250afd6cce011f4e66431e722d0c1fdcccaeeff2792fde5487fcf241321"
+      },
+      "loc": 423,
+      "call_site_files": 631,
+      "call_site_occurrences": 3351,
+      "call_sites": 3351,
+      "site_setting_reads": 41,
+      "rails_cache_reads": 0,
+      "rails_logger_reads": 0,
+      "redis_reads": 0,
+      "metrics_reads": 0,
+      "i18n_reads": 0,
+      "current_reads": 0,
+      "discourse_globals": 1,
+      "rails_globals": 0,
+      "ar_queries": 1,
+      "db_queries": 0,
+      "db_query": 0,
+      "callbacks_or_procs": 1,
+      "native_ext_touches": 0,
+      "held_ar_state_refs": 0,
+      "held_user_refs": 0,
+      "side_effect_calls": [],
+      "def_methods": 37,
+      "can_is_predicates": 0,
+      "blocks_procs": 1,
+      "candidate": "partial",
+      "reasons": [
+        "large call-site surface",
+        "live AR/DB reads",
+        "SiteSetting global reads",
+        "callbacks/procs/dynamic blocks"
+      ]
+    },
+    "candidate_user_option": {
+      "files": [
+        "app/models/user_option.rb"
+      ],
+      "source_sha256_by_file": {
+        "app/models/user_option.rb": "4bff7a72409cf4377db1f83086420e8ea35125ea129c051876b9d019b2aa1c80"
+      },
+      "loc": 343,
+      "call_site_files": 64,
+      "call_site_occurrences": 218,
+      "call_sites": 218,
+      "site_setting_reads": 37,
+      "rails_cache_reads": 0,
+      "rails_logger_reads": 1,
+      "redis_reads": 2,
+      "metrics_reads": 0,
+      "i18n_reads": 2,
+      "current_reads": 0,
+      "discourse_globals": 2,
+      "rails_globals": 1,
+      "ar_queries": 3,
+      "db_queries": 1,
+      "db_query": 1,
+      "callbacks_or_procs": 0,
+      "native_ext_touches": 0,
+      "held_ar_state_refs": 0,
+      "held_user_refs": 0,
+      "side_effect_calls": [],
+      "def_methods": 26,
+      "can_is_predicates": 0,
+      "blocks_procs": 0,
+      "candidate": "partial",
+      "reasons": [
+        "large call-site surface",
+        "live AR/DB reads",
+        "Rails/Discourse cache or Redis global",
+        "SiteSetting global reads"
+      ]
+    }
+  }
+}

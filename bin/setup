@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+bundle install
+
+(
+  cd rails_capsule_mini_app
+  bundle install
+)
+
+(
+  cd rails_capsule_slice_b
+  bundle install
+)

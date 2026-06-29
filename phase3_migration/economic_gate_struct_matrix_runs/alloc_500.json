@@ -1,0 +1,160 @@
+{
+  "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [aarch64-linux]",
+  "platform": "aarch64-linux",
+  "generated_at_utc": "2026-06-14T11:09:51Z",
+  "config": {
+    "pools": [
+      1,
+      2
+    ],
+    "shapes": [
+      "struct"
+    ],
+    "n_rules": 1000000,
+    "n_rules_by_shape": {
+      "struct": 1500000
+    },
+    "items": 500,
+    "scan": 500,
+    "alloc": 500,
+    "duration_s": 2.0,
+    "refork_every_s": 1.0,
+    "passes_per_gen": 1,
+    "reps": 2
+  },
+  "gates": {
+    "pss_ratio_max": 0.8,
+    "absolute_saving_mb_min": 100,
+    "throughput_reach_min": 0.75
+  },
+  "shapes": [
+    {
+      "shape": "struct",
+      "n_rules": 1500000,
+      "oracle": 75875132.82,
+      "frontier": {
+        "ractor": [
+          {
+            "pool": 1,
+            "throughput_items_s": 6745.581800431868,
+            "throughput_min_items_s": 5810.02564580616,
+            "throughput_max_items_s": 7681.137955057576,
+            "pss_kb": 165896.0,
+            "pss_mb": 162.0,
+            "correct": true,
+            "gc_count": 33.5,
+            "gc_time_ms": 455.5,
+            "allocated_objects": 14750703.0,
+            "gens": 1.0,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 10617.813671366006,
+            "throughput_min_items_s": 9856.168965707777,
+            "throughput_max_items_s": 11379.458377024237,
+            "pss_kb": 165688.0,
+            "pss_mb": 161.8,
+            "correct": true,
+            "gc_count": 49.0,
+            "gc_time_ms": 616.0,
+            "allocated_objects": 21625738.0,
+            "gens": 1.0,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "norefork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 7768.240349236812,
+            "throughput_min_items_s": 7618.825844975043,
+            "throughput_max_items_s": 7917.654853498581,
+            "pss_kb": 217429.0,
+            "pss_mb": 212.3,
+            "correct": true,
+            "gc_count": 13.0,
+            "gc_time_ms": 291.0,
+            "allocated_objects": 15750015.0,
+            "gens": 1.0,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 15364.648090181025,
+            "throughput_min_items_s": 14807.39663084411,
+            "throughput_max_items_s": 15921.89954951794,
+            "pss_kb": 300707.0,
+            "pss_mb": 293.7,
+            "correct": true,
+            "gc_count": 42.5,
+            "gc_time_ms": 598.5,
+            "allocated_objects": 31250030.0,
+            "gens": 1.0,
+            "refork_interval_p50_s": null,
+            "refork_interval_p95_s": null
+          }
+        ],
+        "refork": [
+          {
+            "pool": 1,
+            "throughput_items_s": 7472.828650277364,
+            "throughput_min_items_s": 7402.481826070511,
+            "throughput_max_items_s": 7543.175474484217,
+            "pss_kb": 220410.5,
+            "pss_mb": 215.2,
+            "correct": true,
+            "gc_count": 15.0,
+            "gc_time_ms": 339.5,
+            "allocated_objects": 15500030.0,
+            "gens": 2.0,
+            "refork_interval_p50_s": 1.0498139700000593,
+            "refork_interval_p95_s": 1.0696370670000306
+          },
+          {
+            "pool": 2,
+            "throughput_items_s": 15215.092513320846,
+            "throughput_min_items_s": 14887.053908563523,
+            "throughput_max_items_s": 15543.131118078169,
+            "pss_kb": 286587.25,
+            "pss_mb": 279.9,
+            "correct": true,
+            "gc_count": 54.5,
+            "gc_time_ms": 719.0,
+            "allocated_objects": 31250060.0,
+            "gens": 2.0,
+            "refork_interval_p50_s": 1.0373962249999522,
+            "refork_interval_p95_s": 1.0386768960000836
+          }
+        ]
+      },
+      "verdict": {
+        "status": "inconclusive",
+        "reason": "throughput spread straddles the gate",
+        "ractor_best": {
+          "pool": 2,
+          "throughput_items_s": 10617.813671366006,
+          "pss_kb": 165688.0,
+          "pss_mb": 161.8
+        },
+        "refork_iso_pss_kb": 247292.1577652152,
+        "refork_iso_pss_mb": 241.5,
+        "norefork_iso_pss_kb": 248668.34038469326,
+        "norefork_iso_pss_mb": 242.8,
+        "refork_max_throughput_items_s": 15215.092513320846,
+        "refork_interval_p50_s": 1.0373962249999522,
+        "refork_interval_p95_s": 1.0696370670000306,
+        "pss_ratio": 0.6700091159271939,
+        "pss_ratio_percent": 67.0,
+        "throughput_reach": 0.6978474604784748,
+        "throughput_reach_percent": 69.8,
+        "throughput_reach_min": 0.6341173403757816,
+        "throughput_reach_max": 0.7643861872817158,
+        "absolute_saving_mb": 79.7,
+        "material_saving": false
+      }
+    }
+  ]
+}

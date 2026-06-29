@@ -1,0 +1,63 @@
+{
+  "generated_at_utc": "2026-06-14T17:00:11Z",
+  "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [arm64-darwin24]",
+  "platform": "arm64-darwin24",
+  "status": "pass",
+  "amortization_runner_sha256": "8a9d294361f3a6a6e0a5ec4171bbd928b11a58087d92a15d0c7fbac912186ad0",
+  "capsule_sha256": "325ecdf26c2faefe027cf316d70372ece11e1d3ea374abbcb1e5674b75db7c10",
+  "config": {
+    "ns": [
+      100,
+      1000,
+      10000
+    ],
+    "ractors": 4,
+    "reps": 5
+  },
+  "payload_bytes": 531,
+  "rows": [
+    {
+      "n": 100,
+      "inline_wall_s": 0.00004100007936358452,
+      "capsule_seq_wall_s": 0.0001900000497698784,
+      "capsule_par_decide_wall_s": 0.0003060000017285347,
+      "frozen_reuse_par_wall_s": 0.00021199975162744522,
+      "capsule_seq_speedup_vs_inline": 0.2157898348618457,
+      "capsule_par_speedup_vs_inline": 0.13398718670582685,
+      "frozen_reuse_speedup_vs_inline": 0.1933968273492859,
+      "capsule_seq_amortizes": false,
+      "capsule_par_amortizes": false
+    },
+    {
+      "n": 1000,
+      "inline_wall_s": 0.00040499959141016006,
+      "capsule_seq_wall_s": 0.0018800003454089165,
+      "capsule_par_decide_wall_s": 0.0020110001787543297,
+      "frozen_reuse_par_wall_s": 0.0002899998798966408,
+      "capsule_seq_speedup_vs_inline": 0.21542527500018577,
+      "capsule_par_speedup_vs_inline": 0.20139212103950596,
+      "frozen_reuse_speedup_vs_inline": 1.396550893588323,
+      "capsule_seq_amortizes": false,
+      "capsule_par_amortizes": false
+    },
+    {
+      "n": 10000,
+      "inline_wall_s": 0.0040779998525977135,
+      "capsule_seq_wall_s": 0.02049800008535385,
+      "capsule_par_decide_wall_s": 0.02078900020569563,
+      "frozen_reuse_par_wall_s": 0.0008390001021325588,
+      "capsule_seq_speedup_vs_inline": 0.19894623063795913,
+      "capsule_par_speedup_vs_inline": 0.1961614224949813,
+      "frozen_reuse_speedup_vs_inline": 4.860547504383265,
+      "capsule_seq_amortizes": false,
+      "capsule_par_amortizes": false
+    }
+  ],
+  "verdict": {
+    "any_real_variant_amortizes": false,
+    "promotion_amortizes": false,
+    "classification": "compatibility_only_no_amortization",
+    "frozen_reuse_is_real_promotion_scenario": false,
+    "note": "Per-user owner snapshot build is paid sequentially for every user and already costs more than inline; a shared snapshot AND an expensive decide would be required to cross over — Promotion has neither."
+  }
+}

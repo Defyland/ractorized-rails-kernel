@@ -1,0 +1,64 @@
+Ruby 4.0.5 (aarch64-linux) refork death-test (frontier / iso-throughput)
+POOLS=[1, 2] SHAPES=[:hash, :struct, :blob] N_by_shape={hash: 800000, struct: 1500000, blob: 8000000} ITEMS=500 SCAN=500 ALLOC=0 DURATION=1.2s REPS=1 refork-cadence=wall-clock 1.0s/gen
+
+==================== shape: hash (N=800000) ====================
+model                   pool    items/s  tput[min..max]   PSS_MB    GC_cnt   alloc_objs      ok
+ractor                     1      17514    17514..17514  172.3MB         0          688     yes
+norefork                   1      19631    19631..19631  147.5MB         0            9     yes
+refork                     1      17380    17380..17380  147.6MB         0           18     yes
+                              ↳ actual refork interval p50=1.025s p95=1.025s (2 gens, target 1.0s)
+ractor                     2      31235    31235..31235  172.3MB         0          723     yes
+norefork                   2      36163    36163..36163  148.7MB         0           18     yes
+refork                     2      39611    39611..39611  148.8MB         0           36     yes
+                              ↳ actual refork interval p50=1.017s p95=1.017s (2 gens, target 1.0s)
+
+  verdict (hash, N=800000, ALLOC=0, refork wall 1.0s/gen; actual interval p50=1.017s p95=1.025s):
+    ractor best:        31235 items/s @ pool 2, PSS 172.3MB
+    refork  @ iso-tput: PSS 148.4MB   |   no-refork @ iso-tput: PSS 148.4MB
+    Ractor PSS / refork PSS = 116.1% (gate ≤70-80%) ; absolute saving -23.9MB (gate ≥100MB ABSOLUTE)
+    throughput reach vs refork max = 78.9% (gate ≥75-80%)
+    → THESIS DIES: refork Pareto-dominates Ractor (≤PSS AND ≥throughput).
+
+==================== shape: struct (N=1500000) ====================
+model                   pool    items/s  tput[min..max]   PSS_MB    GC_cnt   alloc_objs      ok
+ractor                     1      17428    17428..17428  162.0MB         0          691     yes
+norefork                   1      17065    17065..17065   92.2MB         0           12     yes
+refork                     1      14372    14372..14372   92.3MB         0           24     yes
+                              ↳ actual refork interval p50=1.027s p95=1.027s (2 gens, target 1.0s)
+ractor                     2      20239    20239..20239  162.0MB         0          732     yes
+norefork                   2      33673    33673..33673   93.6MB         0           24     yes
+refork                     2      32617    32617..32617   93.7MB         0           48     yes
+                              ↳ actual refork interval p50=1.020s p95=1.020s (2 gens, target 1.0s)
+
+  verdict (struct, N=1500000, ALLOC=0, refork wall 1.0s/gen; actual interval p50=1.026s p95=1.027s):
+    ractor best:        20239 items/s @ pool 2, PSS 162.0MB
+    refork  @ iso-tput: PSS 92.7MB   |   no-refork @ iso-tput: PSS 92.5MB
+    Ractor PSS / refork PSS = 174.7% (gate ≤70-80%) ; absolute saving -69.3MB (gate ≥100MB ABSOLUTE)
+    throughput reach vs refork max = 62.1% (gate ≥75-80%)
+    → THESIS DIES: refork Pareto-dominates Ractor (≤PSS AND ≥throughput).
+
+==================== shape: blob (N=8000000) ====================
+model                   pool    items/s  tput[min..max]   PSS_MB    GC_cnt   alloc_objs      ok
+ractor                     1       8192      8192..8192  130.4MB         1          684     yes
+norefork                   1       8679      8679..8679  132.0MB         0           11     yes
+refork                     1       8763      8763..8763  132.1MB         0           22     yes
+                              ↳ actual refork interval p50=1.031s p95=1.031s (2 gens, target 1.0s)
+ractor                     2      15677    15677..15677  130.3MB         0          725     yes
+norefork                   2      15601    15601..15601  133.2MB         0           22     yes
+refork                     2      16441    16441..16441  133.4MB         0           44     yes
+                              ↳ actual refork interval p50=1.029s p95=1.029s (2 gens, target 1.0s)
+
+  verdict (blob, N=8000000, ALLOC=0, refork wall 1.0s/gen; actual interval p50=1.029s p95=1.031s):
+    ractor best:        15677 items/s @ pool 2, PSS 130.3MB
+    refork  @ iso-tput: PSS 133.2MB   |   no-refork @ iso-tput: PSS 133.2MB
+    Ractor PSS / refork PSS = 97.8% (gate ≤70-80%) ; absolute saving 2.9MB (gate ≥100MB ABSOLUTE)
+    throughput reach vs refork max = 95.4% (gate ≥75-80%)
+    → TRADEOFF (neither Pareto-dominates): Ractor throughput 95% of refork-max, Ractor PSS 98% of refork. Memory gate (≤80% AND ≥100MB): fail; throughput gate (≥75%): pass → OVERALL FAIL.
+
+JSON written: phase3_migration/economic_gate_matrix_runs/alloc_0.json
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.
+refork_gate.rb:206: warning: Ractor API is experimental and may change in future versions of Ruby.

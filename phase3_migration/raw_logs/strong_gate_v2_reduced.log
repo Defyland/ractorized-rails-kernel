@@ -1,0 +1,59 @@
+Ruby 4.0.5 (aarch64-linux) — STRONG HOST-LINUX ECONOMIC GATE v2 — run_class=reduced mem_measured=true
+SHAPES=[:hash] TARGETS_MB=[200.0] ALLOCS=[0, 100] WORKERS=[1, 2, 4]
+MODELS=["process_naive", "process_gc_compact", "process_warmup", "process_gc_compact_plus_warmup", "process_prefork_warmed", "process_refork", "ractor_frozen_image"] ITEMS=2000 SCAN=1500 DURATION=3.0s REPS=3 REFORK_EVERY_S=1.0 STEADY_GC=2
+gates: ractor PSS <= 75% of strongest baseline AND saving >= 100MB AND reach >= 75%
+runner_sha256=e2efbe21be060d6fd491867074bf7ea9233746af5ab5590a12bb0e83121fc853 json_out=/app/phase3_migration/raw_logs/strong_gate_v2_reduced.json
+
+==================== shape=hash target=200.0MB N=1104222 (measured ~200.1MB) ====================
+  -- alloc=0 --
+  model                           wkrs     items/s    PSS_MB    Pdirty    Sclean    Sdirty       RSS     ok
+  process_naive                      1        6109     246.4      86.8       8.7     315.4     410.9    yes
+  process_gc_compact                 1        6332     225.3      46.6       8.8     352.1     407.5    yes
+  process_warmup                     1        5889     214.8      29.1       8.9     366.0     404.1    yes
+  process_gc_compact_plus_warmup     1        6553     214.7      29.2       9.0     365.6     403.8    yes
+  process_prefork_warmed             1        6537     214.7      29.2       9.0     365.6     403.8    yes
+  process_refork                     1        6681     215.6      30.0       9.4     365.5     405.0    yes
+  ractor_frozen_image                1        6819     200.4     196.4       5.0       3.1     204.5    yes
+  process_naive                      2       13316     340.1     207.8      12.7     389.1     609.6    yes
+  process_gc_compact                 2       13151     249.0      69.7      12.8     528.5     610.9    yes
+  process_warmup                     2       12853     229.8      43.5      12.9     549.3     605.7    yes
+  process_gc_compact_plus_warmup     2       13452     229.8      43.6      13.0     548.7     605.2    yes
+  process_prefork_warmed             2       13314     229.8      43.6      13.0     548.6     605.2    yes
+  process_refork                     2       12941     231.2      44.9      13.5     548.6     607.0    yes
+  ractor_frozen_image                2       13139     200.5     196.6       5.0       3.0     204.5    yes
+  process_naive                      4       25711     481.5     348.6      20.6     648.2    1017.3    yes
+  process_gc_compact                 4       25689     296.3     116.5      20.7     880.6    1017.8    yes
+  process_warmup                     4       25377     259.7      72.9      20.8     915.5    1009.1    yes
+  process_gc_compact_plus_warmup     4       23987     259.6      72.9      20.9     914.9    1008.6    yes
+  process_prefork_warmed             4       25289     259.7      73.0      20.9     914.8    1008.6    yes
+  process_refork                     4       24593     263.4      76.9      21.6     912.8    1011.4    yes
+  ractor_frozen_image                4       25587     200.7     196.8       5.0       2.9     204.7    yes
+  -> PIVOT: ractor PSS 68% (gate <=75%), saving 95.1MB (gate >=100MB) — a memory gate fails vs process_gc_compact
+
+  -- alloc=100 --
+  model                           wkrs     items/s    PSS_MB    Pdirty    Sclean    Sdirty       RSS     ok
+  process_naive                      1        5830     363.4     232.0       8.9     258.7     499.7    yes
+  process_gc_compact                 1        5916     326.7     160.8       8.9     326.7     496.3    yes
+  process_warmup                     1        5864     306.6     121.2       9.1     365.4     495.7    yes
+  process_gc_compact_plus_warmup     1        5825     288.2     102.8       9.1     365.4     477.2    yes
+  process_prefork_warmed             1        6083     288.2     102.8       9.0     365.4     477.2    yes
+  process_refork                     1        5665     289.0     103.5       9.4     365.2     478.1    yes
+  ractor_frozen_image                1        5980     286.3     282.4       5.0       2.9     290.3    yes
+  process_naive                      2       11259     536.4     412.8      12.8     362.4     788.1    yes
+  process_gc_compact                 2       11595     449.1     282.5      12.8     490.3     785.6    yes
+  process_warmup                     2       11723     413.3     227.2      13.0     548.4     788.6    yes
+  process_gc_compact_plus_warmup     2       11061     376.6     190.5      13.0     548.3     751.8    yes
+  process_prefork_warmed             2       10732     376.6     190.5      13.0     548.3     751.8    yes
+  process_refork                     2       10329     377.0     191.2      13.5     547.8     752.0    yes
+  ractor_frozen_image                2       10815     272.1     268.2       5.0       2.9     276.0    yes
+  process_naive                      4       22034     917.1     821.0      20.7     463.5    1305.2    yes
+  process_gc_compact                 4       19257     706.4     556.2      20.7     732.5    1309.5    yes
+  process_warmup                     4       22911     553.0     366.4      20.9     913.9    1301.2    yes
+  process_gc_compact_plus_warmup     4       23748     553.9     367.4      20.9     913.6    1301.9    yes
+  process_prefork_warmed             4       22267     553.9     367.3      20.9     913.7    1301.9    yes
+  process_refork                     4       22868     555.4     369.1      21.6     912.1    1302.8    yes
+  ractor_frozen_image                4       22424     272.1     268.2       5.0       2.9     276.0    yes
+  -> SURVIVES: ractor PSS 51% of reported baseline (process_gc_compact_plus_warmup) at 94% reach, saving 263.3MB; the WORST-case REPS band vs the ADVERSARIAL baseline (process_gc_compact_plus_warmup) still clears every gate (ratio <=75%, saving >=100MB, reach >=75%); pessimistic wins at [4] workers
+
+JSON written: /app/phase3_migration/raw_logs/strong_gate_v2_reduced.json
+per-cell JSON: /app/phase3_migration/strong_gate_v2_reduced_runs/  raw log: /app/phase3_migration/raw_logs/strong_gate_v2_reduced.log

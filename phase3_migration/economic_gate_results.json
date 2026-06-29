@@ -1,0 +1,182 @@
+{
+  "generated_at_utc": "2026-06-14T11:06:40Z",
+  "scope": {
+    "allocs": [
+      0,
+      100,
+      500
+    ],
+    "shapes": [
+      "hash",
+      "struct",
+      "blob"
+    ],
+    "pools": "1,2",
+    "duration_s": 1.2,
+    "reps": 1,
+    "note": "Reduced local matrix unless ALLOCS/REPS/DURATION are raised; final gate still requires broader Linux runs."
+  },
+  "runs": [
+    {
+      "alloc": 0,
+      "json_file": "phase3_migration/economic_gate_matrix_runs/alloc_0.json",
+      "raw_log": "phase3_migration/raw_logs/economic_gate_matrix_alloc_0.log",
+      "shape_verdicts": {
+        "hash": {
+          "n_rules": 800000,
+          "status": "kill",
+          "reason": "refork Pareto-dominates Ractor",
+          "absolute_saving_mb": -23.9,
+          "pss_ratio_percent": 116.1,
+          "throughput_reach_percent": 78.9,
+          "ractor_pss_mb": 172.3,
+          "refork_iso_pss_mb": 148.4
+        },
+        "struct": {
+          "n_rules": 1500000,
+          "status": "kill",
+          "reason": "refork Pareto-dominates Ractor",
+          "absolute_saving_mb": -69.3,
+          "pss_ratio_percent": 174.7,
+          "throughput_reach_percent": 62.1,
+          "ractor_pss_mb": 162.0,
+          "refork_iso_pss_mb": 92.7
+        },
+        "blob": {
+          "n_rules": 8000000,
+          "status": "tradeoff_fail",
+          "reason": "neither model Pareto-dominates; memory gate fails, throughput gate passes",
+          "absolute_saving_mb": 2.9,
+          "pss_ratio_percent": 97.8,
+          "throughput_reach_percent": 95.4,
+          "ractor_pss_mb": 130.3,
+          "refork_iso_pss_mb": 133.2
+        }
+      }
+    },
+    {
+      "alloc": 100,
+      "json_file": "phase3_migration/economic_gate_matrix_runs/alloc_100.json",
+      "raw_log": "phase3_migration/raw_logs/economic_gate_matrix_alloc_100.log",
+      "shape_verdicts": {
+        "hash": {
+          "n_rules": 800000,
+          "status": "economic_no_op",
+          "reason": "Ractor Pareto-dominates refork but absolute saving is below 100MB",
+          "absolute_saving_mb": 51.1,
+          "pss_ratio_percent": 80.5,
+          "throughput_reach_percent": 130.0,
+          "ractor_pss_mb": 211.0,
+          "refork_iso_pss_mb": 262.1
+        },
+        "struct": {
+          "n_rules": 1500000,
+          "status": "economic_no_op",
+          "reason": "Ractor Pareto-dominates refork but absolute saving is below 100MB",
+          "absolute_saving_mb": 16.4,
+          "pss_ratio_percent": 90.8,
+          "throughput_reach_percent": 205.2,
+          "ractor_pss_mb": 161.6,
+          "refork_iso_pss_mb": 178.1
+        },
+        "blob": {
+          "n_rules": 8000000,
+          "status": "tradeoff_fail",
+          "reason": "neither model Pareto-dominates; memory gate fails, throughput gate passes",
+          "absolute_saving_mb": 5.6,
+          "pss_ratio_percent": 95.9,
+          "throughput_reach_percent": 94.1,
+          "ractor_pss_mb": 131.6,
+          "refork_iso_pss_mb": 137.3
+        }
+      }
+    },
+    {
+      "alloc": 500,
+      "json_file": "phase3_migration/economic_gate_matrix_runs/alloc_500.json",
+      "raw_log": "phase3_migration/raw_logs/economic_gate_matrix_alloc_500.log",
+      "shape_verdicts": {
+        "hash": {
+          "n_rules": 800000,
+          "status": "tradeoff_fail",
+          "reason": "neither model Pareto-dominates; memory gate fails, throughput gate fails",
+          "absolute_saving_mb": 6.8,
+          "pss_ratio_percent": 96.9,
+          "throughput_reach_percent": 66.8,
+          "ractor_pss_mb": 211.0,
+          "refork_iso_pss_mb": 217.7
+        },
+        "struct": {
+          "n_rules": 1500000,
+          "status": "tradeoff_fail",
+          "reason": "neither model Pareto-dominates; memory gate fails, throughput gate fails",
+          "absolute_saving_mb": 64.2,
+          "pss_ratio_percent": 71.6,
+          "throughput_reach_percent": 48.8,
+          "ractor_pss_mb": 162.0,
+          "refork_iso_pss_mb": 226.1
+        },
+        "blob": {
+          "n_rules": 8000000,
+          "status": "tradeoff_fail",
+          "reason": "neither model Pareto-dominates; memory gate fails, throughput gate passes",
+          "absolute_saving_mb": 5.2,
+          "pss_ratio_percent": 96.2,
+          "throughput_reach_percent": 88.3,
+          "ractor_pss_mb": 131.6,
+          "refork_iso_pss_mb": 136.8
+        }
+      }
+    }
+  ],
+  "by_shape": {
+    "hash": {
+      "allocs": [
+        0,
+        100,
+        500
+      ],
+      "statuses": {
+        "0": "kill",
+        "100": "economic_no_op",
+        "500": "tradeoff_fail"
+      },
+      "survives_allocs": [],
+      "max_absolute_saving_mb": 51.1,
+      "min_pss_ratio_percent": 80.5,
+      "min_throughput_reach_percent": 66.8
+    },
+    "struct": {
+      "allocs": [
+        0,
+        100,
+        500
+      ],
+      "statuses": {
+        "0": "kill",
+        "100": "economic_no_op",
+        "500": "tradeoff_fail"
+      },
+      "survives_allocs": [],
+      "max_absolute_saving_mb": 64.2,
+      "min_pss_ratio_percent": 71.6,
+      "min_throughput_reach_percent": 48.8
+    },
+    "blob": {
+      "allocs": [
+        0,
+        100,
+        500
+      ],
+      "statuses": {
+        "0": "tradeoff_fail",
+        "100": "tradeoff_fail",
+        "500": "tradeoff_fail"
+      },
+      "survives_allocs": [],
+      "max_absolute_saving_mb": 5.6,
+      "min_pss_ratio_percent": 95.9,
+      "min_throughput_reach_percent": 88.3
+    }
+  }
+}
