@@ -43,6 +43,7 @@ For a fast review, use the repository surfaces in this order:
 1. `bin/setup`
 2. `ruby -Itest test/research_contract_test.rb`
 3. `bin/check`
+4. `bin/research-check` when the external `phase3_migration/discourse/` checkout is available
 
 The root test file is intentionally small. It proves that the repository still exposes the architecture
 document, the root verification path, and the two real proof slices.
@@ -53,3 +54,4 @@ document, the root verification path, and the two real proof slices.
 - No claim is made that an entire Rails web request runs inside a Ractor.
 - No claim is made that the final Linux host gate has passed.
 - No gem, engine, or public DSL is implied by the current evidence.
+- The deepest evidence audit depends on a local external Discourse checkout and therefore stays outside public CI.

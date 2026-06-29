@@ -1043,3 +1043,24 @@ an application signal.
 - The fast proof path now checks the publication contract before running the Rails/Postgres slices.
 - If deploy classification still needs a tooling-side override later, that follow-up is now about evaluator policy,
   not missing repo evidence.
+
+## 2026-06-29 — Surface the deep research audit without pretending it belongs in public CI
+
+**Context.** The repo already had `phase3_migration/verify_findings_evidence.rb`, which is the strongest machine check
+in the repository, but a reviewer had to discover it indirectly through long-form findings and raw scripts. At the same
+time, that verifier depends on the external local Discourse checkout intentionally ignored from outer git history, so
+blindly moving it into GitHub Actions would be theater.
+
+**Options considered.**
+1. Leave the verifier buried in Phase 3 notes and keep the public contract shallow.
+2. Pretend the verifier belongs in public CI and ignore the missing external checkout.
+3. Add an explicit local entrypoint for the deep audit, document the boundary, and keep public CI limited to the vendored contract.
+
+**Decision.** Choose option 3. Added `bin/research-check` as the honest entrypoint for the machine findings audit and
+documented that it requires the local `phase3_migration/discourse/` checkout. The root contract test now guards the
+existence of that entrypoint and the README explains why it is intentionally outside GitHub Actions.
+
+**Consequences.**
+- Reviewers now have a visible path from the fast contract to the deep research audit.
+- The repo exposes more of its specialist evidence without pretending that ignored local fixtures are vendored inputs.
+- Future work can still decide to vendor or replace the Discourse fixture, but until then the boundary is explicit.

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+DISCOURSE_DIR="phase3_migration/discourse"
+JSON_OUT="${JSON_OUT:-phase3_migration/raw_logs/findings_evidence_check_latest.json}"
+
+if ! git -C "$DISCOURSE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
+  cat >&2 <<'EOF'
+bin/research-check needs the external Discourse checkout at phase3_migration/discourse.
+
+This repository does not vendor that checkout on purpose. Use `bin/check` for the
+public fast contract. Use `bin/research-check` only when you also have the local
+Discourse checkout that the Phase 3 audit references.
+EOF
+  exit 1
+fi
+
+JSON_OUT="$JSON_OUT" ruby phase3_migration/verify_findings_evidence.rb

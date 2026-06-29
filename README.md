@@ -58,6 +58,19 @@ bin/check
 `bin/check` is intentionally the reviewer path. The expensive Linux economic gates remain separate manual experiments,
 with the current authoritative verdict frozen in [`phase3_migration/FINDINGS.md`](phase3_migration/FINDINGS.md).
 
+## Deep research audit
+
+When you have the external local Discourse checkout at `phase3_migration/discourse/`, run:
+
+```sh
+bin/research-check
+```
+
+That script reruns the machine audit behind the frozen findings in
+[`phase3_migration/FINDINGS.md`](phase3_migration/FINDINGS.md). It is deliberately
+**not** part of GitHub Actions because the Discourse checkout is a local research
+fixture, not vendored repository content.
+
 ## Scripts
 
 | file | what it answers | where it runs |

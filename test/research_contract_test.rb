@@ -28,6 +28,14 @@ class ResearchContractTest < Minitest::Test
     assert_includes check_script, "rails_capsule_slice_b"
   end
 
+  def test_research_check_surfaces_the_optional_deep_audit
+    research_check = read_file("bin/research-check")
+
+    assert_includes research_check, "verify_findings_evidence.rb"
+    assert_includes research_check, "phase3_migration/discourse"
+    assert_includes research_check, "public fast contract"
+  end
+
   def test_slice_b_runner_accepts_external_database_url
     runner = read_file("rails_capsule_slice_b/run.sh")
 
@@ -46,6 +54,8 @@ class ResearchContractTest < Minitest::Test
 
     assert_includes readme, "not a product"
     assert_includes readme, "bin/check"
+    assert_includes readme, "bin/research-check"
+    assert_includes readme, "not vendored repository content"
     refute_match HEURISTIC_KEYWORDS, readme
   end
 end
