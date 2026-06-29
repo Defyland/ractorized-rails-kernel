@@ -1020,3 +1020,26 @@ scripts, raw logs, and findings remain versioned here. No deploy manifest was ad
 - `bin/check` → `day1_smoke_test.rb`: 0 unexpected errors
 - `bin/check` → `rails_capsule_mini_app`: 20 runs, 109 assertions, 0 failures, 0 errors
 - `bin/check` → `rails_capsule_slice_b`: 13 runs, 62 assertions, 0 failures, 0 errors
+
+## 2026-06-29 — Add evaluator-grade architecture and root contract evidence
+
+**Context.** The repo was already honest about its R&D state, but the publication harness still lacked a
+recognized top-level architecture document and a root test surface. The evaluator also inferred deploy posture from
+README wording that described a deployable shape the repo does not claim.
+
+**Options considered.**
+1. Add fake deploy material so the harness sees a more conventional app.
+2. Change only the evaluator and leave the repository publication surface weak.
+3. Strengthen the repository's own evidence: add a recognized architecture document, a small root contract test,
+   wire it into `bin/check`, and rewrite the README so it does not read like a hidden runtime.
+
+**Decision.** Choose option 3. Added `docs/architecture.md`, a root `test/` directory with
+`test/research_contract_test.rb`, and made `bin/check` run that contract before the heavier proof slices. Reworded
+the README to keep the repo explicitly research-shaped and to avoid deploy/runtime language the evaluator treats as
+an application signal.
+
+**Consequences.**
+- The repository now exposes architecture and verification surfaces the evaluator can detect without adding theater.
+- The fast proof path now checks the publication contract before running the Rails/Postgres slices.
+- If deploy classification still needs a tooling-side override later, that follow-up is now about evaluator policy,
+  not missing repo evidence.

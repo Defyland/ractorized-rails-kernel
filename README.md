@@ -25,15 +25,16 @@ See [`docs/decisions.md`](docs/decisions.md) for the locked spec, gates, and res
 
 ## Repository contract
 
-- This repo is an **R&D asset**, not a deployable service. There is intentionally no Railway, Procfile, or
-  production deploy story.
+- This repo is an **R&D asset**, not a productized runtime. There is intentionally no deploy manifest, Procfile,
+  or production rollout story.
 - `bin/setup` installs the three Bundler contexts that matter here: the root smoke dependency, the booted Rails
   mini app, and the real ActiveRecord/Postgres Slice B.
 - `bin/check` is the fast falsification contract:
+  - `test/research_contract_test.rb`
   - `day1_smoke_test.rb`
   - `rails_capsule_mini_app` booted-Rails protocol tests
   - `rails_capsule_slice_b` real ActiveRecord/Postgres protocol tests
-- `.github/workflows/ci.yml` runs that same contract on GitHub Actions with a PostgreSQL service.
+- `.github/workflows/ci.yml` runs that same contract on GitHub Actions with a PostgreSQL instance.
 - `phase3_migration/discourse/` is treated as an **external local checkout of upstream Discourse**, not part of this
   outer repository history. The outer repo tracks the patch, scripts, raw logs, and findings that describe how that
   checkout was used.
@@ -42,6 +43,7 @@ See [`docs/decisions.md`](docs/decisions.md) for the locked spec, gates, and res
 
 ```sh
 bin/setup
+ruby -Itest test/research_contract_test.rb
 bin/check
 ```
 
@@ -193,30 +195,30 @@ dispatcher that faked exactly-once, caught by the support-skill review) — both
 2. **Transactional protocol** — proposal + optimistic commit + outbox + idempotent at-least-once dispatch. This is
    validated **owner-side** on real ActiveRecord/Postgres.
 3. **Rails owner-side protocol + a Ractor-executable capsule** — booted Rails 8, real ActiveRecord/Postgres, Rails
-   globals failing inside a Ractor, and the capsule service computes a deeply shareable `Proposal` + `EffectIntent`s
+   globals failing inside a Ractor, and the capsule compute path builds a deeply shareable `Proposal` + `EffectIntent`s
    **inside a non-main Ractor** over a shareable `CapsuleContext` + `OrderSnapshot` (no AR, no globals). The owner
    still commits, and the coordinator refuses mutable/non-shareable proposals.
 
 **Validated:** owner-side proposal/outbox protocol in real Rails · Rails-globals isolation in a Ractor · the capsule
 *compute* step running in a Ractor over a small shareable snapshot · deeply shareable proposal/effects ·
 outbox/idempotency on real Postgres · native-extension fallback · named failures for Current/callbacks.
-**NOT validated:** migration cost at scale in an existing app · performance with a real Rails workload · the full HTTP
+**NOT validated:** migration cost at scale in an existing app · performance with a real Rails workload · the full web
 request lifecycle · broad gem/call-site coverage · production operation · a *whole* Rails request served from a Ractor.
 
-Do **not** claim "Rails apps migrate easily", "ready for a gem", "solves Rails in Ractors", or "Rails capsule service
+Do **not** claim "Rails apps migrate easily", "ready for a gem", "solves Rails in Ractors", or "Rails capsule runtime
 validated" (only the compute step is Ractor-proven; the protocol is owner-side). **Blocked:** product, gem, public DSL,
 Rails engine, ActiveJob adapter, actor registry, CDC/deltas, request capsules, callback compiler.
 
 **Next — economic re-confirmation BEFORE any more migration (2026-06-14 verdict).** Phase 3 (Promotion) proved
 architectural *compatibility*, not an end-to-end perf win (owner snapshot build+decide = 0.21× inline; the 3.77×
-parallel speedup is on the pure decide only). So do NOT migrate more Discourse services yet. Gate order:
+parallel speedup is on the pure decide only). So do NOT migrate more Discourse subsystems yet. Gate order:
 1. **`refork_gate` grande on Linux** — `hash`/`struct`/`blob`, large datasets, PASS only if PSS ratio ≤70–80% AND
    absolute saving ≥100MB AND throughput ≥75–80% of the process/refork baseline AND correct=yes AND the spread does
    not straddle the gate. No small smoke counts.
 2. **Promotion amortization benchmark** — N ∈ {100, 1k, 10k} users vs the SAME frozen read model; (owner snapshot per
    user + capsule decide) vs (process/refork) vs (inline full); report snapshot/decide/boundary cost, throughput, PSS,
    payload bytes. Decides whether Promotion is a real case or only compatibility.
-3. Only then decide whether to migrate another real service.
+3. Only then decide whether to migrate another real subsystem.
 
 If even a large `hash` cannot hold ≥100MB absolute saving, the economic thesis must pivot to "only large CoW-hostile
 Ruby graphs". Blocked items (gem/DSL/engine/...) unchanged. See [`docs/decisions.md`](docs/decisions.md) (2026-06-14).

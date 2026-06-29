@@ -19,6 +19,7 @@ ensure_local_socket_database() {
 ensure_local_socket_database "$MINI_APP_TEST_DATABASE_URL"
 ensure_local_socket_database "$SLICE_B_DATABASE_URL"
 
+ruby -Itest test/research_contract_test.rb
 bundle exec ruby day1_smoke_test.rb
 
 (
