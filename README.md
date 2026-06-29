@@ -235,3 +235,11 @@ parallel speedup is on the pure decide only). So do NOT migrate more Discourse s
 
 If even a large `hash` cannot hold ≥100MB absolute saving, the economic thesis must pivot to "only large CoW-hostile
 Ruby graphs". Blocked items (gem/DSL/engine/...) unchanged. See [`docs/decisions.md`](docs/decisions.md) (2026-06-14).
+
+## License
+
+This repository is published under the MIT License. See
+[LICENSE.txt](LICENSE.txt).
+
+That keeps the benchmark harnesses, economic gates, and research notes reusable
+for study and internal experiments.

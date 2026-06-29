@@ -1064,3 +1064,21 @@ existence of that entrypoint and the README explains why it is intentionally out
 - Reviewers now have a visible path from the fast contract to the deep research audit.
 - The repo exposes more of its specialist evidence without pretending that ignored local fixtures are vendored inputs.
 - Future work can still decide to vendor or replace the Discourse fixture, but until then the boundary is explicit.
+
+---
+
+## 2026-06-29 — Publish the research repo under the MIT License
+
+**Decision.** Add `LICENSE.txt` and a README license section so the benchmark
+evidence, harnesses, and research notes are intentionally reusable.
+
+**Why.** This repository is already public and explicitly framed as research.
+Default copyright would keep the experiments readable but leave the legal reuse
+boundary unclear for engineers who want to study or adapt the harnesses.
+
+**Tradeoffs accepted.** A permissive license can lead to partial reuse of the
+benchmarks without all the caveats preserved in the decision log. That risk is
+acceptable because the repo's purpose is research communication, not product
+capture.
+
+**Refs.** `LICENSE.txt`, `README.md`.
