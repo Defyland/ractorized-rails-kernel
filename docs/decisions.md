@@ -1065,6 +1065,28 @@ existence of that entrypoint and the README explains why it is intentionally out
 - The repo exposes more of its specialist evidence without pretending that ignored local fixtures are vendored inputs.
 - Future work can still decide to vendor or replace the Discourse fixture, but until then the boundary is explicit.
 
+## 2026-07-01 — Make the deep-audit environment boundary executable
+
+**Context.** The repo already documented that `bin/research-check` depends on an external Discourse checkout, but the
+script hard-coded `phase3_migration/discourse/`. That made the boundary harder to test and created a subtle honesty
+gap: `DISCOURSE_DIR=/tmp/does-not-exist bin/research-check` still passed on a machine that already had the default local
+fixture.
+
+**Options considered.**
+1. Leave the boundary documented-only and trust reviewers to infer the hard-coded path.
+2. Move the deep audit into public CI anyway.
+3. Honor `DISCOURSE_DIR`, fail loudly when the checkout is missing, and add a portable test for that failure path.
+
+**Decision.** Choose option 3. `bin/research-check` now accepts `DISCOURSE_DIR`, passes it through to the Ruby verifier,
+and emits an explicit failure message when the pointed directory is not a git checkout. Added a focused root test that
+executes the script against a temporary non-repo directory and asserts that the failure is loud and side-effect free.
+
+**Consequences.**
+- The environment limit is now part of executable contract, not only prose.
+- Reviewers can aim the deep audit at a non-default checkout path without editing files, and the shell entrypoint plus
+  Ruby verifier both honor that override.
+- Public CI remains honest: it still stops at the vendored fast contract while the deeper local-only audit keeps its own guardrail.
+
 ---
 
 ## 2026-06-29 — Publish the research repo under the MIT License

@@ -30,10 +30,14 @@ class ResearchContractTest < Minitest::Test
 
   def test_research_check_surfaces_the_optional_deep_audit
     research_check = read_file("bin/research-check")
+    verifier = read_file("phase3_migration/verify_findings_evidence.rb")
 
     assert_includes research_check, "verify_findings_evidence.rb"
-    assert_includes research_check, "phase3_migration/discourse"
+    assert_includes research_check, 'DISCOURSE_DIR="${DISCOURSE_DIR:-phase3_migration/discourse}"'
+    assert_includes research_check, 'DISCOURSE_DIR="$DISCOURSE_DIR" JSON_OUT="$JSON_OUT" ruby phase3_migration/verify_findings_evidence.rb'
+    assert_includes research_check, "Set DISCOURSE_DIR=/absolute/path/to/discourse"
     assert_includes research_check, "public fast contract"
+    assert_includes verifier, 'ENV.fetch("DISCOURSE_DIR", File.join(PHASE3, "discourse"))'
   end
 
   def test_slice_b_runner_accepts_external_database_url
@@ -55,6 +59,7 @@ class ResearchContractTest < Minitest::Test
     assert_includes readme, "not a product"
     assert_includes readme, "bin/check"
     assert_includes readme, "bin/research-check"
+    assert_includes readme, "DISCOURSE_DIR=/absolute/path/to/discourse bin/research-check"
     assert_includes readme, "not vendored repository content"
     refute_match HEURISTIC_KEYWORDS, readme
   end

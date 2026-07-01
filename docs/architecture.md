@@ -43,7 +43,8 @@ For a fast review, use the repository surfaces in this order:
 1. `bin/setup`
 2. `ruby -Itest test/research_contract_test.rb`
 3. `bin/check`
-4. `bin/research-check` when the external `phase3_migration/discourse/` checkout is available
+4. `bin/research-check` when the external `phase3_migration/discourse/` checkout is available, or with
+   `DISCOURSE_DIR=/absolute/path/to/discourse` when the checkout lives elsewhere
 
 The root test file is intentionally small. It proves that the repository still exposes the architecture
 document, the root verification path, and the two real proof slices.

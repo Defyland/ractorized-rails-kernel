@@ -66,6 +66,12 @@ When you have the external local Discourse checkout at `phase3_migration/discour
 bin/research-check
 ```
 
+If your checkout lives elsewhere, point the script at it explicitly:
+
+```sh
+DISCOURSE_DIR=/absolute/path/to/discourse bin/research-check
+```
+
 That script reruns the machine audit behind the frozen findings in
 [`phase3_migration/FINDINGS.md`](phase3_migration/FINDINGS.md). It is deliberately
 **not** part of GitHub Actions because the Discourse checkout is a local research
